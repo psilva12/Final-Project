@@ -1,34 +1,22 @@
-package com.qa.finalapp.domain;
+package com.qa.finalapp.dto;
 
-import javax.persistence.*;
+public class TicketDTO {
 
-@Entity
-public class Ticket {
-
-    @Id
-    @GeneratedValue
     private Long id;
-
-    @Column(nullable = false)
     private String title;
-
-    @Column
     private String description;
-
-    @Column
+    private String time;
     private String author;
 
-    @Column
-    private String time;
 
-    public Ticket() {
+    public TicketDTO() {
     }
 
-    public Ticket(String title, String description, String author, String time) {
+    public TicketDTO(String title, String description, String time, String author) {
         this.title = title;
         this.description = description;
-        this.author = author;
         this.time = time;
+        this.author = author;
     }
 
     public Long getId() {
@@ -55,19 +43,19 @@ public class Ticket {
         this.description = description;
     }
 
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
     public String getAuthor() {
         return author;
     }
 
     public void setAuthor(String author) {
         this.author = author;
-    }
-
-    public String getTime() {
-        return time;
-    }
-
-public void setTime(String time) {
-        this.time = time;
     }
 }
