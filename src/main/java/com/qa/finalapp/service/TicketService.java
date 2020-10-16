@@ -35,7 +35,7 @@ public class TicketService {
         return this.ticketRepository.findAll().stream().map(this::mapToDTO).collect(Collectors.toList());
     }
 
-    public TicketDTO createTickets(Ticket ticket ){
+    public TicketDTO createTicket(Ticket ticket ){
         return this.mapToDTO(this.ticketRepository.save(ticket));
     }
 
@@ -43,7 +43,7 @@ public class TicketService {
         return this.mapToDTO(this.ticketRepository.findById(id).orElseThrow(TicketNotFoundException::new));
     }
 
-    public TicketDTO updatedTicket(Long id, Ticket ticket){
+    public TicketDTO updateTicket(Long id, Ticket ticket){
         Ticket update = this.ticketRepository.findById(id).orElseThrow(TicketNotFoundException::new);
         update.setTitle(ticket.getTitle());
         update.setDescription(ticket.getDescription());
