@@ -56,6 +56,15 @@ The application we are tasked to develop is a Spring Boot Help Queue application
 ![deploy](https://user-content.gitlab-static.net/cc86f76dc227985a62c41eeaebd2016556062f92/68747470733a2f2f692e696d6775722e636f6d2f37757566396b652e706e67)
 
 ### AWS
+#### Networking
+Security is fundamental in a network-based application. Therefore, certain security measures need to be put in place. 
+In this project, multiple layers of networking were created.
+The first one is the security group which ensures that only the required ports are open.
+The next layer is the VPC which creates a network containing the public and the private subnets.
+The private subnet contains the CI server and the testing environment.
+While the public subnet contains the Kubernetes cluster.
+Finally, NGINX was used to proxy-pass the services to a single port so that the user can access the application.
+
 ### Terraform
 ### Ansible
 ### Jenkins
