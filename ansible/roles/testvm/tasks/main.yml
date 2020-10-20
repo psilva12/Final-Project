@@ -1,2 +1,0 @@
-- name: Copy and Execute the script
-  script: /home/qa/Projects/SFIA2/ansible/docker.sh
