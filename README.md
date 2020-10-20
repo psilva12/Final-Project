@@ -66,7 +66,13 @@ While the public subnet contains the Kubernetes cluster.
 Finally, NGINX was used to proxy-pass the services to a single port so that the user can access the application.
 
 ### Terraform
+Terraform uses Infrastructure as Code which automates EC2 and RDS instance creation. This means that the end result can be replicated as many times as necessary.
+It also ensures that the environment of the instances is consistent. 
+In this project two RDS instances and two AWS EC2 instances were created with Terraform.
+
 ### Ansible
+Ansible is an open source software that is used for configuration and software deployment. It uses .yaml files to configure deployment settings and hosts. Ansible is a powerful piece of software that uses ssh access to connect to hosts and deploy configuration instructions. It uses an inventory file to store host addresses and variables to use when connecting via SSH to allow for successful authentication. For example, this project uses the playbook to ssh into the testing VM and install the docker and docker-compose dependancies and then shh into the Jenkins VM and configure the Jenkins user.
+The ip addresses needed by Ansible to ssh into the virtual machines were provided via Terraform during the creation of the environment. This provided an extra feature of automation.
 ### Jenkins
 ### Docker
 ### Kubernetes (EKS)
