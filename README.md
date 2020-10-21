@@ -56,8 +56,23 @@ The application we are tasked to develop is a Spring Boot Help Queue application
 ![deploy](https://user-content.gitlab-static.net/cc86f76dc227985a62c41eeaebd2016556062f92/68747470733a2f2f692e696d6775722e636f6d2f37757566396b652e706e67)
 
 ### AWS
+#### Networking
+Security is fundamental in a network-based application. Therefore, certain security measures need to be put in place. 
+In this project, multiple layers of networking were created.
+The first one is the security group which ensures that only the required ports are open.
+The next layer is the VPC which creates a network containing the public and the private subnets.
+The private subnet contains the CI server and the testing environment.
+While the public subnet contains the Kubernetes cluster.
+Finally, NGINX was used to proxy-pass the services to a single port so that the user can access the application.
+
 ### Terraform
+Terraform uses Infrastructure as Code which automates EC2 and RDS instance creation. This means that the end result can be replicated as many times as necessary.
+It also ensures that the environment of the instances is consistent. 
+In this project two RDS instances and two AWS EC2 instances were created with Terraform.
+
 ### Ansible
+Ansible is an open source software that is used for configuration and software deployment. It uses .yaml files to configure deployment settings and hosts. Ansible is a powerful piece of software that uses ssh access to connect to hosts and deploy configuration instructions. It uses an inventory file to store host addresses and variables to use when connecting via SSH to allow for successful authentication. For example, this project uses the playbook to ssh into the testing VM and install the docker and docker-compose dependancies and then shh into the Jenkins VM and configure the Jenkins user.
+The ip addresses needed by Ansible to ssh into the virtual machines were provided via Terraform during the creation of the environment. This provided an extra feature of automation.
 ### Jenkins
 ### Docker
 ### Kubernetes (EKS)
