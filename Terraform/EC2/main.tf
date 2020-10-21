@@ -46,6 +46,13 @@ ansible_python_interpreter="/usr/bin/python3"
 
 
 
+provisioner "local-exec"{
+  command = <<EOF
+  ansible-playbook --private-key "ansible-jenkins.pem" -i "./inventory.ini" ./EC2/playbook.yaml
+  EOF
+
+}
+
 }
 
 
