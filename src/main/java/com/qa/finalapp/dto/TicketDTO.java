@@ -1,5 +1,10 @@
 package com.qa.finalapp.dto;
 
+import com.qa.finalapp.domain.Comment;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class TicketDTO {
 
     private Long id;
@@ -7,7 +12,7 @@ public class TicketDTO {
     private String description;
     private String time;
     private String author;
-
+    private List<CommentDTO> comments = new ArrayList<>();
 
     public TicketDTO() {
     }
@@ -17,6 +22,14 @@ public class TicketDTO {
         this.description = description;
         this.time = time;
         this.author = author;
+    }
+
+    public List<CommentDTO> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<CommentDTO> comments) {
+        this.comments = comments;
     }
 
     public Long getId() {

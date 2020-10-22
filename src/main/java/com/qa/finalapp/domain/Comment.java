@@ -1,24 +1,13 @@
 package com.qa.finalapp.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "comments"})
-public class Ticket {
+public class Comment {
 
     @Id
     @GeneratedValue
     private Long id;
-
-    @Column(nullable = false)
-    private String title;
-
-    @OneToMany(mappedBy = "ticket", fetch = FetchType.EAGER)
-    private List<Comment> comments = new ArrayList<>();
 
     @Column
     private String description;
@@ -29,22 +18,24 @@ public class Ticket {
     @Column
     private String time;
 
-    public Ticket() {
+    public Comment() {
     }
 
-    public Ticket(String title, String description, String author, String time) {
-        this.title = title;
+    @ManyToOne(targetEntity = Ticket.class)
+    private Ticket ticket;
+
+    public Comment(String description, String author, String time) {
         this.description = description;
         this.author = author;
         this.time = time;
     }
 
-    public List<Comment> getComments() {
-        return comments;
+    public Ticket getTicket() {
+        return ticket;
     }
 
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
+    public void setTicket(Ticket ticket) {
+        this.ticket = ticket;
     }
 
     public Long getId() {
@@ -53,14 +44,6 @@ public class Ticket {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     public String getDescription() {
@@ -83,7 +66,7 @@ public class Ticket {
         return time;
     }
 
-public void setTime(String time) {
+    public void setTime(String time) {
         this.time = time;
     }
 }
