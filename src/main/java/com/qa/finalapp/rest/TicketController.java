@@ -22,6 +22,7 @@ public class TicketController {
         this.ticketService = ticketService;
     }
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @GetMapping("/getTickets")
     public ResponseEntity<List<TicketDTO>> getAllTickets(){
         return ResponseEntity.ok(this.ticketService.readAllTickets());
