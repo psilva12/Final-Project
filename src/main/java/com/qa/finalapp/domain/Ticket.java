@@ -1,8 +1,13 @@
 package com.qa.finalapp.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler", "comments"})
 public class Ticket {
 
     @Id
@@ -11,6 +16,9 @@ public class Ticket {
 
     @Column(nullable = false)
     private String title;
+
+    @OneToMany(mappedBy = "ticket", fetch = FetchType.EAGER)
+    private List<Comment> comments = new ArrayList<>();
 
     @Column
     private String description;
@@ -29,6 +37,14 @@ public class Ticket {
         this.description = description;
         this.author = author;
         this.time = time;
+    }
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
     }
 
     public Long getId() {
