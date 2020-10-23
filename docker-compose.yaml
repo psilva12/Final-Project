@@ -1,0 +1,9 @@
+version: '3.7'
+services:
+  final_project_backend:
+    image: final_project_backend
+    build: ./
+    ports:
+    - target: 9500
+      published: 9500
+
