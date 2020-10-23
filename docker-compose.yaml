@@ -6,4 +6,13 @@ services:
     ports:
     - target: 9500
       published: 9500
+  final_project_frontend:
+    image: final_project_frontend
+    build: ./src/main/resources/final-project-frontend
+    depends_on:
+      - final_project_backend
+    ports:
+    - target: 3000
+      published: 3000
+    stdin_open: true
 
