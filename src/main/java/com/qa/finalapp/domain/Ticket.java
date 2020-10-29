@@ -29,14 +29,27 @@ public class Ticket {
     @Column
     private String time;
 
+    @Column
+    private Boolean status;
+
     public Ticket() {
     }
 
-    public Ticket(String title, String description, String author, String time) {
+    public Ticket(String title, List<Comment> comments, String description, String author, String time, Boolean status) {
         this.title = title;
+        this.comments = comments;
         this.description = description;
         this.author = author;
         this.time = time;
+        this.status = status;
+    }
+
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
     }
 
     public List<Comment> getComments() {

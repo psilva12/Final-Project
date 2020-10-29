@@ -12,16 +12,18 @@ public class TicketDTO {
     private String description;
     private String time;
     private String author;
+    private Boolean status;
     private List<CommentDTO> comments = new ArrayList<>();
 
     public TicketDTO() {
     }
 
-    public TicketDTO(String title, String description, String time, String author) {
+    public TicketDTO(String title, String description, String time, String author, Boolean status) {
         this.title = title;
         this.description = description;
         this.time = time;
         this.author = author;
+        this.status = status;
     }
 
     public List<CommentDTO> getComments() {
@@ -34,6 +36,14 @@ public class TicketDTO {
 
     public Long getId() {
         return id;
+    }
+
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
     }
 
     public void setId(Long id) {

@@ -47,6 +47,7 @@ public class TicketService {
         Ticket update = this.ticketRepository.findById(id).orElseThrow(TicketNotFoundException::new);
         update.setTitle(ticket.getTitle());
         update.setDescription(ticket.getDescription());
+        update.setStatus(ticket.getStatus());
 
         return this.mapToDTO(this.ticketRepository.save(update));
     }
