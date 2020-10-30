@@ -1,10 +1,15 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
+import Card from 'react-bootstrap/Card'
+
+import TimeAgo from 'react-timeago'
+
 
 const GetTicket = () => {
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
     const [items, setItems] = useState([]);
+ 
 
     useEffect( () => {
         axios.get("http://localhost:9500/getTickets" ,
@@ -27,7 +32,7 @@ const GetTicket = () => {
                 }
             )
     },[]);
-
+    const initialDate = new Date();
     if(error){
         return <div> Oops... something has happened... {error.message}</div>
     }
@@ -35,11 +40,24 @@ const GetTicket = () => {
         return <div> Please wait... we are loading your information</div>
     }else{
         return(
-            <ul>
+            <div>
                 {items.map( (hi) => (
-                    <li key={hi.id}> {hi.author} {hi.description} {hi.title}</li>
-                ))}
-            </ul>
+                    <div>
+                        <Card style={{ width: '18rem' }}>
+                            <Card.Body>
+                            <Card.Title>{hi.title}</Card.Title>
+                            <Card.Subtitle className="mb-2 text-muted">{hi.author}</Card.Subtitle>
+                            <Card.Text>
+                                {hi.description}
+                            </Card.Text>
+                            </Card.Body> 
+                            {/* Button to add to done and to view card.
+                            Time ago underneath */}
+                        </Card> 
+                        <br></br>
+                    </div>
+                ))} 
+            </div>
         )
     }
 }

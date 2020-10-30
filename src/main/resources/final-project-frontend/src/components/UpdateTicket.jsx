@@ -14,7 +14,7 @@ export default class UpdateTicket extends React.Component {
       }
 
       handleTitleChange = event => {
-          this.setState({title: event.target.value})
+        this.setState({title: event.target.value})
       }
     
       handleDescChange = event => {
@@ -41,19 +41,24 @@ export default class UpdateTicket extends React.Component {
         <div>
           <form onSubmit={this.handleSubmit}>
             <label>
-              Ticket ID:
-              <input type="text" name="id" onChange={this.handleChange} />
+                Ticket ID:
+              </label>
+                <input type="text" name="id" onChange={this.handleChange} />
               <br>
               </br>
-              Title:
-              <input type="text" name="title" onChange={this.handleTitleChange} />
+              <label>
+                Title:
+              </label>
+                <input type="text" name="title" onChange={this.handleTitleChange} />
               <br>
               </br>
-              Description:
-              <input type="text" name="description" onChange={this.handleDescChange} />
+              <label>
+                Description:
+              </label>
+                <input type="text" name="description" onChange={this.handleDescChange} />
               <br>
               </br>
-            </label>
+            
             <button type="submit">Update</button>
           </form>
         </div>

@@ -16,7 +16,8 @@ class PostTicket extends React.Component {
         const ticketData = {   title: 'yolo',
                             description: '150g',
                             author:'bj',
-                            time:'12' };
+                            time:'12',
+                            status: false };
         axios.post('http://localhost:9500/createTicket', ticketData)
             .then(response => this.setState({ ticketId: response.data.id }));
     }
