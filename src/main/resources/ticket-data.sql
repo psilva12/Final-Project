@@ -1,12 +1,16 @@
 INSERT INTO `ticket`
-(`title`,
+(
+`title`,
 `description`,
-`time`,
 `author`,
-`status`)
+`time`,
+`status`
+)
 VALUES
-('a',
+(
+'a',
 'b',
 'c',
 'd',
-false);
+false
+);

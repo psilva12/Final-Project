@@ -15,4 +15,16 @@ services:
     - target: 3000
       published: 3000
     stdin_open: true
+  nginx:
+    image: nginx:latest
+    ports:
+    - target: 80
+      published: 80
+      protocol: tcp
+    volumes:
+    - type: bind
+      source: ./nginx/nginx.conf
+      target: /etc/nginx/nginx.conf
+    depends_on:
+      - final_project_frontend
 
