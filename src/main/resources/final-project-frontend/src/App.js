@@ -18,7 +18,7 @@ function App() {
               <Switch>
                   <Route path="/" component={GetTicket} exact /> 
                   <Route path="/createTicket" component={PostTicket}/>
-                  <Route path="/viewTicket" component={ViewTicket}/>
+                  <Route path="/viewTicket/:id" component={ViewTicket}/>
               </Switch>
             </Router>          
         </Navbar>
