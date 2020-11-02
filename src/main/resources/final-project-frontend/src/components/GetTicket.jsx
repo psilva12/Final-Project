@@ -53,9 +53,6 @@ const GetTicket = () => {
                             <Card.Text>
                             <TimeAgo date={hi.time}>{({ value }) => <h2>{value}</h2>}</TimeAgo>
                             </Card.Text>
-                            <Card.Text>
-                            <TimeAgo date={hi.time}>{({ value }) => <h2>{value}</h2>}</TimeAgo>
-                            </Card.Text>
                             <button>
                             <a href={`/viewTicket/${hi.id}`}> View Ticket</a>
                             </button>
