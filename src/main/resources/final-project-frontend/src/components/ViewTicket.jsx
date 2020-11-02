@@ -2,17 +2,14 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import Card from 'react-bootstrap/Card'
 import TimeAgo from 'react-timeago'
-import ViewTicket from './ViewTicket'
 
-
-
-const GetTicket = () => {
+const ViewTicket = () => {
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
     const [items, setItems] = useState([]);
 
     useEffect( () => {
-        axios.get("http://localhost:9500/getTickets" ,
+        axios.get("http://localhost:9500/getTicketById${this.state.id}" ,
             {
                 id: '',
                 headers:{
@@ -53,10 +50,6 @@ const GetTicket = () => {
                             <Card.Text>
                             <TimeAgo date={hi.time}>{({ value }) => <h2>{value}</h2>}</TimeAgo>
                             </Card.Text>
-                            <Card.Text>
-                            <TimeAgo date={hi.time}>{({ value }) => <h2>{value}</h2>}</TimeAgo>
-                            </Card.Text>
-                            <input type="button" onclick={ViewTicket}/>
                             </Card.Body> 
                         </Card> 
                         <br></br>
@@ -67,4 +60,4 @@ const GetTicket = () => {
     }
 }
 
-export default GetTicket;
+export default ViewTicket;
