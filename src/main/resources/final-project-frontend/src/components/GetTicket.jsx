@@ -1,8 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import Card from 'react-bootstrap/Card'
-
 import TimeAgo from 'react-timeago'
+
 
 
 const GetTicket = () => {
@@ -32,7 +32,6 @@ const GetTicket = () => {
                 }
             )
     },[]);
-    const initialDate = new Date();
     if(error){
         return <div> Oops... something has happened... {error.message}</div>
     }
@@ -50,9 +49,11 @@ const GetTicket = () => {
                             <Card.Text>
                                 {hi.description}
                             </Card.Text>
+                            <Card.Text>
+                            <TimeAgo date={hi.time}>{({ value }) => <h2>{value}</h2>}</TimeAgo>
+                            </Card.Text>
                             </Card.Body> 
-                            {/* Button to add to done and to view card.
-                            Time ago underneath */}
+                               
                         </Card> 
                         <br></br>
                     </div>

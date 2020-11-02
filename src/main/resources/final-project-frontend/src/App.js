@@ -10,7 +10,8 @@ import GetTicket from './components/GetTicket';
 function App() {
   return (
       <>
-      <Navigation className="mr-auto"/>
+      <Navigation />
+      <Navbar className="mr-auto"/>
         <Navbar bg="light" variant="light">          
             <Router>
               <Switch>
