@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import Card from 'react-bootstrap/Card'
-import TimeAgo from 'react-timeago'
 import { useParams } from 'react-router-dom';
 
 const ViewTicket = () => {
@@ -50,7 +49,7 @@ else if(!isLoaded){
                             {items.description}
                         </Card.Text>
                         <Card.Text>
-                        <TimeAgo date={items.time}>{({ value }) => <h2>{value}</h2>}</TimeAgo>
+                        {items.time}
                         </Card.Text>
                         <button>
                             <a href={`/deleteTicket/${items.id}`}> Delete Ticket</a>
