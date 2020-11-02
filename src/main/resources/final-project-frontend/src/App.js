@@ -7,6 +7,7 @@ import {Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import PostTicket from './components/PostTicket';
 import GetTicket from './components/GetTicket';
 import ViewTicket from './components/ViewTicket';
+import DeleteTicket from './components/DeleteTicket';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
                   <Route path="/" component={GetTicket} exact /> 
                   <Route path="/createTicket" component={PostTicket}/>
                   <Route path="/viewTicket/:id" component={ViewTicket}/>
+                  <Route path="/deleteTicket/:id" component={DeleteTicket}/>
               </Switch>
             </Router>          
         </Navbar>

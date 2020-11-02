@@ -52,6 +52,9 @@ else if(!isLoaded){
                         <Card.Text>
                         <TimeAgo date={items.time}>{({ value }) => <h2>{value}</h2>}</TimeAgo>
                         </Card.Text>
+                        <button>
+                            <a href={`/deleteTicket/${items.id}`}> Delete Ticket</a>
+                        </button>
                         </Card.Body> 
                     </Card> 
                     <br></br>
