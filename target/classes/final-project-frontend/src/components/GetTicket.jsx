@@ -53,10 +53,9 @@ const GetTicket = () => {
                             <Card.Text>
                             <TimeAgo date={hi.time}>{({ value }) => <h2>{value}</h2>}</TimeAgo>
                             </Card.Text>
-                            <Card.Text>
-                            <TimeAgo date={hi.time}>{({ value }) => <h2>{value}</h2>}</TimeAgo>
-                            </Card.Text>
-                            <input type="button" onclick={ViewTicket}/>
+                            <button>
+                            <a href={`/viewTicket/${hi.id}`}> View Ticket</a>
+                            </button>
                             </Card.Body> 
                         </Card> 
                         <br></br>

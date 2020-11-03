@@ -1,17 +1,17 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
 export default class UpdateTicket extends React.Component {
 
     state = {
-        id: '',
         title: '',
         description: ''
       }
     
-      handleChange = event => {
-        this.setState({ id: event.target.value});
-      }
+      // handleChange = event => {
+      //   this.setState({ id: event.target.value});
+      // }
 
       handleTitleChange = event => {
         this.setState({title: event.target.value})
@@ -23,8 +23,11 @@ export default class UpdateTicket extends React.Component {
 
       handleSubmit = event => {
         event.preventDefault();
+
         
-        axios.put(`http://localhost:9500/updateTicket/${this.state.id}`,
+        const { match: { params } } = this.props;
+        
+        axios.put(`http://localhost:9500/updateTicket/${params.id}`,
             {   title: this.state.title,
                 description: this.state.description
             }
@@ -40,20 +43,14 @@ export default class UpdateTicket extends React.Component {
       return (
         <div>
           <form onSubmit={this.handleSubmit}>
-            <label>
-                Ticket ID:
-              </label>
-                <input type="text" name="id" onChange={this.handleChange} />
-              <br>
-              </br>
               <label>
-                Title:
+                New title:
               </label>
                 <input type="text" name="title" onChange={this.handleTitleChange} />
               <br>
               </br>
               <label>
-                Description:
+                New description:
               </label>
                 <input type="text" name="description" onChange={this.handleDescChange} />
               <br>
