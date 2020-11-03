@@ -66,8 +66,8 @@ pipeline{
 
                     rm -rf Final-Project
                     git clone https://github.com/psilva12/Final-Project
-                    git checkout frontend-experimental
                     cd Final-Project
+                    git checkout frontend-experimental
                     sudo docker-compose up --build
                     sudo docker-compose logs
 

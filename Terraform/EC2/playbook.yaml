@@ -54,8 +54,8 @@
   vars:
   - install_directory: /opt/docker
   tasks:
-#  - name: 'install docker and docker-compose'
-#    script: docker.sh
+  - name: 'install docker and docker-compose'
+    script: docker.sh
   - name: 'ensure everything is update'
     command: sudo apt update
   - name: 'install rds dependencies'
