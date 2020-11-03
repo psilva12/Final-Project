@@ -12,7 +12,7 @@ class PostTicket extends React.Component {
         description: '',
         author:'',
         time:'',
-        status: false
+        status: 0
       }
 
       handleTitleChange = event => {

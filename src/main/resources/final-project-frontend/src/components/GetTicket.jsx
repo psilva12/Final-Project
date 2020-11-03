@@ -56,6 +56,9 @@ const GetTicket = () => {
                             <button>
                             <a href={`/viewTicket/${hi.id}`}> View Ticket</a>
                             </button>
+                            <button>
+                            <a href={`/doneTicket/${hi.id}/${hi.title}/${hi.description}`}> Done </a>
+                        </button>
                             </Card.Body> 
                         </Card> 
                         <br></br>

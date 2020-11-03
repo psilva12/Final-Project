@@ -2,11 +2,12 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
-export default class UpdateTicket extends React.Component {
+export default class DoneTicket extends React.Component {
 
     state = {
         title: '',
-        description: ''
+        description: '',
+        status: 1
       }
     
       // handleChange = event => {
@@ -28,9 +29,10 @@ export default class UpdateTicket extends React.Component {
         const { match: { params } } = this.props;
         
         axios.put(`http://localhost:9500/updateTicket/${params.id}`,
-            {   title: this.state.title,
-                description: this.state.description,
-                status: 0
+            {  
+              title: params.title,
+              description: params.description,
+              status: 1
             }
         )
           .then(res => {
@@ -43,21 +45,8 @@ export default class UpdateTicket extends React.Component {
     render() {
       return (
         <div>
-          <form onSubmit={this.handleSubmit}>
-              <label>
-                New title:
-              </label>
-                <input type="text" name="title" onChange={this.handleTitleChange} />
-              <br>
-              </br>
-              <label>
-                New description:
-              </label>
-                <input type="text" name="description" onChange={this.handleDescChange} />
-              <br>
-              </br>
-            
-            <button type="submit">Update</button>
+          <form onSubmit={this.handleSubmit}>                      
+            <button type="submit">Done</button>
           </form>
         </div>
       )
