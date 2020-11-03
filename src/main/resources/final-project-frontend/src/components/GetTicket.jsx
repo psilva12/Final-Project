@@ -2,10 +2,9 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import Card from 'react-bootstrap/Card'
 import TimeAgo from 'react-timeago'
-import ViewTicket from './ViewTicket'
-import CardColumns from 'react-bootstrap/CardColumns'
-
-
+import Button from 'react-bootstrap/Button'
+import Table from 'react-bootstrap/Table'
+import Container from 'react-bootstrap/Container'
 
 const GetTicket = () => {
     const [error, setError] = useState(null);
@@ -41,66 +40,67 @@ const GetTicket = () => {
         return <div> Please wait... we are loading your information</div>
     }else{
         return(
+            <Container>
             <div>
-                 <p> Queue </p>
-                 <CardColumns>
-                     
+                
+                <Table>
+                <td>
+                <h3> Queue </h3>
                 {items.filter(ticket =>ticket.status === false).map( (hi) => (
                     <div>
-                       
-                      
-                        <Card style={{ width: '18rem' }}>
+                        <Card border="primary" style={{ width: '18rem' }}>
                             <Card.Body>
                             <Card.Title>{hi.title}</Card.Title>
                             <Card.Subtitle className="mb-2 text-muted">{hi.author}</Card.Subtitle>
                             <Card.Text>
                                 {hi.description}
                             </Card.Text>
-                            <Card.Text>
-                            <TimeAgo date={hi.time}>{({ value }) => <h2>{value}</h2>}</TimeAgo>
-                            </Card.Text>
-                            <button>
-                            <a href={`/viewTicket/${hi.id}`}> View Ticket</a>
-                            </button>
-                            <button>
-                            <a href={`/doneTicket/${hi.id}/${hi.title}/${hi.description}`}> Done </a>
-                        </button>
+                            <Button variant="info" href={`/viewTicket/${hi.id}`}>
+                                View Ticket
+                            </Button>
+                            {' '}
+                            <Button variant="success" href={`/doneTicket/${hi.id}/${hi.title}/${hi.description}`}>
+                                Done
+                            </Button>
                             </Card.Body> 
-                        </Card> 
-                        <br></br>
+                            <Card.Footer>
+                                <small className="text-muted"><TimeAgo date={hi.time}>{({ value }) => <h2>{value}</h2>}</TimeAgo></small>
+                            </Card.Footer>  
+                        </Card>
+                        <br></br> 
                     </div>
+                ))}
+                </td>
 
-                ))} 
-                </CardColumns> 
-
-                <p> Done </p>
-                <CardColumns>
+                
+                
+                <td>
+                <h3> Done </h3>
                 {items.filter(ticket =>ticket.status === true).map( (hi) => (
                     <div>
-                        
-                      
-                        <Card style={{ width: '18rem' }}>
+                        <Card border="success" style={{ width: '18rem' }}>
                             <Card.Body>
                             <Card.Title>{hi.title}</Card.Title>
                             <Card.Subtitle className="mb-2 text-muted">{hi.author}</Card.Subtitle>
                             <Card.Text>
                                 {hi.description}
                             </Card.Text>
-                            <Card.Text>
-                            <TimeAgo date={hi.time}>{({ value }) => <h2>{value}</h2>}</TimeAgo>
-                            </Card.Text>
-                            <button>
-                            <a href={`/viewTicket/${hi.id}`}> View Ticket</a>
-                            </button>
-                            </Card.Body> 
+                            <Button variant="info" href={`/viewTicket/${hi.id}`}>
+                                View Ticket
+                            </Button>
+                            </Card.Body>
+                            <Card.Footer>
+                                <small className="text-muted"><TimeAgo date={hi.time}>{({ value }) => <h2>{value}</h2>}</TimeAgo></small>
+                            </Card.Footer> 
                         </Card> 
                         <br></br>
                     </div>
-
                 ))} 
-                </CardColumns> 
-
+                </td>
+                </Table>
+                
             </div>
+            </Container>
         )
     }
 }

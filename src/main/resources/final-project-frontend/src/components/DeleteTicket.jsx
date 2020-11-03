@@ -2,9 +2,6 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
-
-
-
 const DeleteTicket = () => {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);

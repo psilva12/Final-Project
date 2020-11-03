@@ -1,6 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import Form from 'react-bootstrap/Form'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Container from 'react-bootstrap/esm/Container';
+import Button from 'react-bootstrap/Button'
 
 export default class UpdateTicket extends React.Component {
 
@@ -8,10 +12,6 @@ export default class UpdateTicket extends React.Component {
         title: '',
         description: ''
       }
-    
-      // handleChange = event => {
-      //   this.setState({ id: event.target.value});
-      // }
 
       handleTitleChange = event => {
         this.setState({title: event.target.value})
@@ -23,7 +23,6 @@ export default class UpdateTicket extends React.Component {
 
       handleSubmit = event => {
         event.preventDefault();
-
         
         const { match: { params } } = this.props;
         
@@ -42,24 +41,25 @@ export default class UpdateTicket extends React.Component {
 
     render() {
       return (
-        <div>
-          <form onSubmit={this.handleSubmit}>
-              <label>
-                New title:
-              </label>
-                <input type="text" name="title" onChange={this.handleTitleChange} />
-              <br>
-              </br>
-              <label>
-                New description:
-              </label>
-                <input type="text" name="description" onChange={this.handleDescChange} />
-              <br>
-              </br>
-            
-            <button type="submit">Update</button>
-          </form>
-        </div>
+        <Container>
+          <div>
+            <h3>Update Ticket</h3>
+            <br></br>
+            <Form onSubmit={this.handleSubmit}>
+                    <Form.Group controlId="formGridTitle">
+                      <Form.Label>Title</Form.Label>
+                      <Form.Control placeholder="Change Ticket Title" onChange={this.handleTitleChange}/>
+                    </Form.Group>
+                    <Form.Group controlId="formGridAddress1">
+                      <Form.Label>Description of Issue</Form.Label>
+                      <Form.Control as="textarea" placeholder="Change Ticket Description" onChange={this.handleDescChange}/>
+                    </Form.Group>
+                    <Button variant="info" type="submit">
+                        Update Ticket
+                    </Button>
+                </Form>
+          </div>
+        </Container>
       )
     }
 }

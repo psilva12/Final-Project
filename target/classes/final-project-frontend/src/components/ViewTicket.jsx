@@ -54,6 +54,12 @@ else if(!isLoaded){
                         <button>
                             <a href={`/deleteTicket/${items.id}`}> Delete Ticket</a>
                         </button>
+                        <button>
+                            <a href={`/updateTicket/${items.id}`}> Update Ticket</a>
+                        </button>
+                        <button>
+                            <a href={`/doneTicket/${items.id}/${items.title}/${items.description}`}> Done </a>
+                        </button>
                         </Card.Body> 
                     </Card> 
                     <br></br>

@@ -2,9 +2,7 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import GetTicket from './GetTicket';
 
-
 let date = new Date();
-
 
 class PostTicket extends React.Component {
     state = {
@@ -12,7 +10,7 @@ class PostTicket extends React.Component {
         description: '',
         author:'',
         time:'',
-        status: false
+        status: 0
       }
 
       handleTitleChange = event => {

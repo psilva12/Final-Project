@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
-import GetTicket from './GetTicket';
-
+import Form from 'react-bootstrap/Form'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Container from 'react-bootstrap/esm/Container';
+import Button from 'react-bootstrap/Button'
 
 let date = new Date();
-
 
 class PostTicket extends React.Component {
     state = {
@@ -46,32 +47,32 @@ class PostTicket extends React.Component {
 
     render() {
         return (
+          <Container>
+            <br>
+            </br>
             <div>
-              <form onSubmit={this.handleSubmit}>
-                  <label>
-                    Title:
-                  </label>
-                    <input type="text" name="title" onChange={this.handleTitleChange} />
-                  <br>
-                  </br>
-                  <label>
-                    Description:
-                  </label>
-                    <input type="text" name="description" onChange={this.handleDescChange} />
-                  <br>
-                  </br>
-                  <label>
-                    Author
-                  </label>
-                    <input type="text" name="title" onChange={this.handleAuthorChange} />
-                  <br>
-                  </br>
-                                  
-                <button type="submit">Create Ticket</button>
-              </form>
+              <Form onSubmit={this.handleSubmit}>
+                  <Form.Group controlId="formGridTitle">
+                    <Form.Label>Title</Form.Label>
+                    <Form.Control placeholder="Ticket Title" onChange={this.handleTitleChange}/>
+                  </Form.Group>
+
+                  <Form.Group controlId="formGridPassword">
+                    <Form.Label>Full Name</Form.Label>
+                    <Form.Control placeholder="Please enter your Full Name" onChange={this.handleAuthorChange}/>
+                  </Form.Group>
+                
+                  <Form.Group controlId="formGridAddress1">
+                    <Form.Label>Description of Issue</Form.Label>
+                    <Form.Control as="textarea" placeholder="Please describe your issue with as much detail as possible." onChange={this.handleDescChange}/>
+                  </Form.Group>
+                  <Button variant="info" type="submit">
+                      Create Ticket
+                  </Button>
+              </Form>
             </div>
-          );
-        
+          </Container>
+        );
     }
 }
 

@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import Card from 'react-bootstrap/Card'
 import { useParams } from 'react-router-dom';
+import Button from 'react-bootstrap/Button'
+import Container from 'react-bootstrap/Container'
 
 const ViewTicket = () => {
     const [error, setError] = useState(null);
@@ -39,32 +41,33 @@ else if(!isLoaded){
 }else{
     return(
         <div>
-            
+            <Container>
                 <div>
-                    <Card style={{ width: '18rem' }}>
+                    <Card border="primary" style={{ width: '20rem' }}>
                         <Card.Body>
                         <Card.Title>{items.title}</Card.Title>
                         <Card.Subtitle className="mb-2 text-muted">{items.author}</Card.Subtitle>
                         <Card.Text>
                             {items.description}
                         </Card.Text>
-                        <Card.Text>
-                        {items.time}
-                        </Card.Text>
-                        <button>
-                            <a href={`/deleteTicket/${items.id}`}> Delete Ticket</a>
-                        </button>
-                        <button>
-                            <a href={`/updateTicket/${items.id}`}> Update Ticket</a>
-                        </button>
-                        <button>
-                            <a href={`/doneTicket/${items.id}/${items.title}/${items.description}`}> Done </a>
-                        </button>
-                        </Card.Body> 
+                        <Button variant="warning" href={`/updateTicket/${items.id}`}> 
+                            Update Ticket
+                        </Button>
+                        {' '}
+                        <Button variant="danger" href={`/deleteTicket/${items.id}`}> 
+                            Delete Ticket
+                        </Button>
+                        <Button variant="success" href={`/doneTicket/${items.id}/${items.title}/${items.description}`}>
+                            Done
+                        </Button>
+                        </Card.Body>
+                        <Card.Footer>
+                            <small className="text-muted">{items.time}</small>
+                        </Card.Footer> 
                     </Card> 
                     <br></br>
-                </div>
-             
+                </div> 
+            </Container>
         </div>
     )
 }

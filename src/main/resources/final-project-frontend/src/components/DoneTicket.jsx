@@ -10,9 +10,6 @@ export default class DoneTicket extends React.Component {
         status: 1
       }
     
-      // handleChange = event => {
-      //   this.setState({ id: event.target.value});
-      // }
 
       handleTitleChange = event => {
         this.setState({title: event.target.value})
@@ -25,7 +22,6 @@ export default class DoneTicket extends React.Component {
       handleSubmit = event => {
         event.preventDefault();
 
-        
         const { match: { params } } = this.props;
         
         axios.put(`http://localhost:9500/updateTicket/${params.id}`,
@@ -45,7 +41,9 @@ export default class DoneTicket extends React.Component {
     render() {
       return (
         <div>
-          <form onSubmit={this.handleSubmit}>                      
+          <form onSubmit={this.handleSubmit}>
+            <label>Please confirm that you wish to complete and close the ticket</label>
+            {' '}                      
             <button type="submit">Done</button>
           </form>
         </div>
