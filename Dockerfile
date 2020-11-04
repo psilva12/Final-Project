@@ -12,7 +12,7 @@ WORKDIR /build
 # use maven to build the application
 #RUN mvn clean package
 
-RUN mvn -Dmaven.test.skip package
+RUN mvn package -Dmaven.test.skip 
 
 # create a new build stage from the Java image
 # which has java installed already
