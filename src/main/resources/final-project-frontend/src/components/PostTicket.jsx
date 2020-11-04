@@ -31,7 +31,7 @@ class PostTicket extends React.Component {
      
       handleSubmit = event => {
         event.preventDefault();
-        axios.post(`http://localhost:9500/createTicket`,
+        axios.post(`http://35.176.172.62:9500/createTicket`,
             {   title: this.state.title,
                 description: this.state.description,
                 author: this.state.author,
