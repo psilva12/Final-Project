@@ -10,7 +10,9 @@ COPY . /build
 WORKDIR /build
 
 # use maven to build the application
-RUN mvn clean package
+#RUN mvn clean package
+
+RUN mvn -Dmaven.test.skip package
 
 # create a new build stage from the Java image
 # which has java installed already
