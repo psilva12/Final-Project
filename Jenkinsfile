@@ -1,7 +1,7 @@
 pipeline{
         agent any
         environment {
-            app_version = 'v1.1'
+            app_version = 'v1.2'
             rollback = 'true'
         }
         stages{
@@ -35,10 +35,13 @@ pipeline{
                         }
             stage('Build Backend Image'){
                             steps{
-                                sh '''
-                                ls
-                                pwd
-                                '''
+                                withCredentials([string(credentialsId: 'databaseurl', variable: 'my_url'),string(credentialsId: 'databaseUsername', variable: 'my_user'), string(credentialsId: 'databasePassword', variable: 'my_pw'),]){
+                                 sh '''
+                                 sed -i s+databasepassword+$my_pw+g src/main/resources/application-dev.properties
+                                 sed -i s+databaseurl+$my_url+g src/main/resources/application-dev.properties
+                                 sed -i s+databaseusername+$my_user+g src/main/resources/application-dev.properties
+                                 '''
+                                }
                                 script{
                                     if (env.rollback == 'false'){
 
@@ -102,6 +105,7 @@ pipeline{
                      git clone https://github.com/psilva12/Final-Project
                      cd Final-Project
                      git checkout frontend-experimental
+
                      docker pull judithed/final_project_backend:$app_version
                      docker pull judithed/final_project_frontend:$app_version
 
