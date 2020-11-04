@@ -1,4 +1,3 @@
-
 import React from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -10,6 +9,7 @@ import ViewTicket from './components/ViewTicket';
 import DeleteTicket from './components/DeleteTicket';
 import UpdateTicket from './components/UpdateTicket';
 import DoneTicket from './components/DoneTicket';
+import PostSolution from './components/PostSolution';
 
 function App() {
   return (
@@ -23,6 +23,7 @@ function App() {
                   <Route path="/deleteTicket/:id" component={DeleteTicket}/>
                   <Route path="/updateTicket/:id" component={UpdateTicket}/>
                   <Route path="/doneTicket/:id/:title/:description" component={DoneTicket}/>
+                  <Route path="/createSolution/:id/:title/:description" component={PostSolution}/>
               </Switch>
             </Router>          
       </>

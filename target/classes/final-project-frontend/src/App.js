@@ -1,7 +1,7 @@
+
 import React from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Navbar from 'react-bootstrap/Navbar';
 import Navigation from './components/Navigation';
 import {Route, BrowserRouter as Router, Switch } from 'react-router-dom';
 import PostTicket from './components/PostTicket';
@@ -14,9 +14,7 @@ import DoneTicket from './components/DoneTicket';
 function App() {
   return (
       <>
-      <Navigation />
-      <Navbar className="mr-auto"/>
-        <Navbar bg="light" variant="light">          
+      <Navigation />       
             <Router>
               <Switch>
                   <Route path="/" component={GetTicket} exact /> 
@@ -27,9 +25,7 @@ function App() {
                   <Route path="/doneTicket/:id/:title/:description" component={DoneTicket}/>
               </Switch>
             </Router>          
-        </Navbar>
       </>
   );
 }
-
 export default App;

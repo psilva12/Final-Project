@@ -4,6 +4,7 @@ import Card from 'react-bootstrap/Card'
 import { useParams } from 'react-router-dom';
 import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
+import Form from 'react-bootstrap/Form'
 
 const ViewTicket = () => {
     const [error, setError] = useState(null);
@@ -15,6 +16,11 @@ const ViewTicket = () => {
         axios.get(`http://localhost:9500/getTicketById/${id}` ,
         {
             id: '',
+            comments: {
+                author: '',
+                description: '',
+                time: '',
+            },
             headers:{
                 'Access-Control-Allow-Origin':'*'
             }
@@ -43,7 +49,7 @@ else if(!isLoaded){
         <div>
             <Container>
                 <div>
-                    <Card border="primary" style={{ width: '20rem' }}>
+                    <Card border="primary" style={{ width: '60rem' }}>
                         <Card.Body>
                         <Card.Title>{items.title}</Card.Title>
                         <Card.Subtitle className="mb-2 text-muted">{items.author}</Card.Subtitle>
@@ -57,20 +63,39 @@ else if(!isLoaded){
                         <Button variant="danger" href={`/deleteTicket/${items.id}`}> 
                             Delete Ticket
                         </Button>
-                        <Button variant="success" href={`/doneTicket/${items.id}/${items.title}/${items.description}`}>
-                            Done
+                        {' '}
+                        <Button variant="info" href={`/createSolution/${items.id}/${items.title}/${items.description}`}>
+                            Add Solution
                         </Button>
                         </Card.Body>
                         <Card.Footer>
                             <small className="text-muted">{items.time}</small>
                         </Card.Footer> 
-                    </Card> 
+                    </Card>
                     <br></br>
-                </div> 
+              </div>
+
+              {items.data.comments.map( (hi) => (  
+              <div>
+                    <Card border="primary" style={{ width: '60rem' }}>
+                        <Card.Body>
+                        <Card.Title>Solution</Card.Title>
+                        <Card.Subtitle className="mb-2 text-muted">{hi}</Card.Subtitle>
+                        <Card.Text>
+                            {hi}
+                        </Card.Text>
+                        </Card.Body>
+                        <Card.Footer>
+                            <small className="text-muted">{hi}</small>
+                        </Card.Footer> 
+                    </Card>
+                    <br></br>
+              </div>
+              ))}
             </Container>
         </div>
     )
-}
+    }
 }
 
 export default ViewTicket;

@@ -7,18 +7,16 @@ import Button from 'react-bootstrap/Button'
 
 let date = new Date();
 
-class PostTicket extends React.Component {
+export default class PostSolution extends React.Component {
     state = {
-        title: '',
         description: '',
         author:'',
         time:'',
-        status: 0
-      }
-
-      handleTitleChange = event => {
-        this.setState({title: event.target.value})
-      }
+        
+        ticket: {
+            id: ''
+        }
+    }
     
       handleDescChange = event => {
         this.setState({description: event.target.value})
@@ -27,17 +25,32 @@ class PostTicket extends React.Component {
       handleAuthorChange = event => {
         this.setState({author: event.target.value})
       }
-
      
       handleSubmit = event => {
+
+        const { match: { params } } = this.props;
+        
         event.preventDefault();
-        axios.post(`http://localhost:9500/createTicket`,
-            {   title: this.state.title,
+        axios.post(`http://localhost:9500/createComment`,
+            {   
                 description: this.state.description,
                 author: this.state.author,
                 time: date.toUTCString(),
-                status: this.state.status
+                ticket: {
+                    id: params.id,
+                }
             }            
+        )
+          .then(res => {
+            console.log(res);
+            console.log(res.data);
+          })
+          axios.put(`http://localhost:9500/updateTicket/${params.id}`,
+            {  
+              title: params.title,
+              description: params.description,
+              status: 1
+            }
         )
           .then(res => {
             console.log(res);
@@ -51,23 +64,18 @@ class PostTicket extends React.Component {
             <br>
             </br>
             <div>
-              <Form onSubmit={this.handleSubmit}>
-                  <Form.Group controlId="formGridTitle">
-                    <Form.Label>Title</Form.Label>
-                    <Form.Control placeholder="Ticket Title" onChange={this.handleTitleChange}/>
-                  </Form.Group>
-
+                <Form onSubmit={this.handleSubmit}>
                   <Form.Group controlId="formGridPassword">
                     <Form.Label>Full Name</Form.Label>
                     <Form.Control placeholder="Please enter your Full Name" onChange={this.handleAuthorChange}/>
                   </Form.Group>
                 
                   <Form.Group controlId="formGridAddress1">
-                    <Form.Label>Description of Issue</Form.Label>
-                    <Form.Control as="textarea" placeholder="Please describe your issue with as much detail as possible." onChange={this.handleDescChange}/>
+                    <Form.Label>Description of Solution</Form.Label>
+                    <Form.Control as="textarea" placeholder="Please describe your sol" onChange={this.handleDescChange}/>
                   </Form.Group>
                   <Button variant="info" type="submit">
-                      Create Ticket
+                      Add Solution
                   </Button>
               </Form>
             </div>
@@ -75,5 +83,3 @@ class PostTicket extends React.Component {
         );
     }
 }
-
-export default PostTicket;
