@@ -41,7 +41,7 @@ pipeline{
                                  sed -i s+databaseurl+$my_url+g src/main/resources/application-dev.properties
                                  sed -i s+databaseusername+$my_user+g src/main/resources/application-dev.properties
                                  '''
-                                }
+                                
                                 script{
                                     if (env.rollback == 'false'){
 
@@ -50,6 +50,7 @@ pipeline{
                                         image2 = docker.build("judithed/final_project_backend", "./")
                                     }
                                 }
+                            }
                             }
             }
             stage('Tag & Push Backend Image'){
