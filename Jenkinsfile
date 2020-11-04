@@ -7,10 +7,13 @@ pipeline{
         stages{
             stage('Build Images'){
                             steps{
+                                sh '''
+                                ls
+                                pwd
+                                '''
                                 script{
                                     if (env.rollback == 'false'){
-                                        ls
-                                        pwd
+
                                         // Check which dockerhub to use
                                         image1 = docker.build("final_project_frontend", "./src/main/resources/final-project-frontend")
                                         image2 = docker.build("final_project_backend", ".")
