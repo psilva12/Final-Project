@@ -90,31 +90,32 @@ pipeline{
 //                     }
 //                 }
 //             }
-//             stage('Deploy') {
-//                 steps{
-//                     withCredentials([file(credentialsId: 'vm_key', variable: 'my_key')]){
-//                     sh '''
-//
-//                     ssh -tt -o StrictHostKeyChecking=no -i $my_key ubuntu@ec2-35-178-22-230.eu-west-2.compute.amazonaws.com << EOF
-//                     sudo service nginx stop
-//
-//                     rm -rf Final-Project
-//                     git clone https://github.com/psilva12/Final-Project
-//                     cd Final-Project
-//                     git checkout frontend-experimental
-//                     sudo docker-compose up
-//                     sudo docker-compose logs
-//
-//                     ls
-//                     exit
-//                     >> EOF
-//                     '''
-//
-//
-//                     }
-//
-//                 }
-//             }
+             stage('Deploy') {
+                 steps{
+                     withCredentials([file(credentialsId: 'vm_key', variable: 'my_key')]){
+                     sh '''
+
+                     ssh -tt -o StrictHostKeyChecking=no -i $my_key ubuntu@ec2-35-178-22-230.eu-west-2.compute.amazonaws.com << EOF
+                     sudo service nginx stop
+
+                     rm -rf Final-Project
+                     git clone https://github.com/psilva12/Final-Project
+                     cd Final-Project
+                     git checkout frontend-experimental
+                     
+                     sudo docker-compose up
+                     sudo docker-compose logs
+
+                     ls
+                     exit
+                     >> EOF
+                     '''
+
+
+                     }
+
+                 }
+             }
 
         }
 //                     $loginGcloud
