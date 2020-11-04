@@ -102,6 +102,8 @@ pipeline{
                      git clone https://github.com/psilva12/Final-Project
                      cd Final-Project
                      git checkout frontend-experimental
+                     docker pull judithed/final_project_backend:$app_version
+                     docker pull judithed/final_project_frontend:$app_version
 
                      sudo -E app_version=$app_version docker-compose up -d
                      sudo docker-compose logs
