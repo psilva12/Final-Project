@@ -5,7 +5,7 @@ pipeline{
             rollback = 'false'
         }
         stages{
-            stage('Build Images'){
+            stage('Build Frontend Image'){
                             steps{
                                 sh '''
                                 ls
@@ -21,7 +21,7 @@ pipeline{
                                 }
                             }
             }
-            stage('Tag & Push Image'){
+            stage('Tag & Push Frontend Image'){
                             steps{
                                 script{
                                     if (env.rollback == 'false'){
@@ -33,6 +33,35 @@ pipeline{
                                 }
                             }
                         }
+            stage('Build Backend Image'){
+                            steps{
+                                sh '''
+                                ls
+                                pwd
+                                '''
+                                script{
+                                    if (env.rollback == 'false'){
+
+                                        // Check which dockerhub to use
+                                        //image1 = docker.build("judithed/final_project_backend", "./src/main/resources/final-project-frontend")
+                                        image2 = docker.build("judithed/final_project_backend", "./")
+                                    }
+                                }
+                            }
+            }
+            stage('Tag & Push Backend Image'){
+                            steps{
+                                script{
+                                    if (env.rollback == 'false'){
+                                        docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials'){
+                                            //image1.push("${env.app_version}")
+                                            image2.push("${env.app_version}")
+                                        }
+                                    }
+                                }
+                            }
+                        }  
+       
 //             stage('Testing'){
 //                 steps{
 //                     withCredentials([file(credentialsId: 'vm_key', variable: 'my_key'),string(credentialsId: 'TESTDB_CONNECT', variable: 'connectTest'),string(credentialsId: 'TESTDB_URI', variable: 'testUri'), string(credentialsId: 'DB_PASSWORD', variable: 'pw'), string(credentialsId: 'SECRET_KEY', variable: 'key')]){
