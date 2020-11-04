@@ -16,7 +16,7 @@ pipeline{
 
                                         // Check which dockerhub to use
                                         image1 = docker.build("final_project_frontend", "./src/main/resources/final-project-frontend")
-                                        image2 = docker.build("final_project_backend", ".")
+                                        image2 = docker.build("final_project_backend", "./")
                                     }
                                 }
                             }
