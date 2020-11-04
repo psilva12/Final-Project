@@ -16,7 +16,7 @@ pipeline{
 
                                         // Check which dockerhub to use
                                         image1 = docker.build("final_project_frontend", "./src/main/resources/final-project-frontend")
-                                        image2 = docker.build("final_project_backend", "./")
+                                       // image2 = docker.build("final_project_backend", "./")
                                     }
                                 }
                             }
@@ -27,7 +27,7 @@ pipeline{
                                     if (env.rollback == 'false'){
                                         docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials'){
                                             image1.push("${env.app_version}")
-                                            image2.push("${env.app_version}")
+                                           // image2.push("${env.app_version}")
                                         }
                                     }
                                 }
