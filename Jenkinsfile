@@ -5,34 +5,34 @@ pipeline{
             rollback = 'false'
         }
         stages{
-            stage('Build Frontend Image'){
-                            steps{
-                                sh '''
-                                ls
-                                pwd
-                                '''
-                                script{
-                                    if (env.rollback == 'false'){
-
-                                        // Check which dockerhub to use
-                                        image1 = docker.build("judithed/final_project_frontend", "./src/main/resources/final-project-frontend")
-                                       // image2 = docker.build("final_project_backend", "./")
-                                    }
-                                }
-                            }
-            }
-            stage('Tag & Push Frontend Image'){
-                            steps{
-                                script{
-                                    if (env.rollback == 'false'){
-                                        docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials'){
-                                            image1.push("${env.app_version}")
-                                           // image2.push("${env.app_version}")
-                                        }
-                                    }
-                                }
-                            }
-                        }
+//             stage('Build Frontend Image'){
+//                             steps{
+//                                 sh '''
+//                                 ls
+//                                 pwd
+//                                 '''
+//                                 script{
+//                                     if (env.rollback == 'false'){
+//
+//                                         // Check which dockerhub to use
+//                                         image1 = docker.build("judithed/final_project_frontend", "./src/main/resources/final-project-frontend")
+//                                        // image2 = docker.build("final_project_backend", "./")
+//                                     }
+//                                 }
+//                             }
+//             }
+//             stage('Tag & Push Frontend Image'){
+//                             steps{
+//                                 script{
+//                                     if (env.rollback == 'false'){
+//                                         docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials'){
+//                                             image1.push("${env.app_version}")
+//                                            // image2.push("${env.app_version}")
+//                                         }
+//                                     }
+//                                 }
+//                             }
+//                         }
             stage('Build Backend Image'){
                             steps{
                                 withCredentials([string(credentialsId: 'databaseurl', variable: 'my_url'),string(credentialsId: 'databaseUsername', variable: 'my_user'), string(credentialsId: 'databasePassword', variable: 'my_pw'),]){
