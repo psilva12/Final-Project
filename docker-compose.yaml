@@ -1,13 +1,13 @@
 version: '3.7'
 services:
   final_project_backend:
-    image: judithed/final_project_backend:v1.1
+    image: judithed/final_project_backend:${app_version}
     build: ./
     ports:
     - target: 9500
       published: 9500
   final_project_frontend:
-    image: judithed/final_project_frontend:v1.1
+    image: judithed/final_project_frontend:${app_version}
     build: ./src/main/resources/final-project-frontend
     depends_on:
       - final_project_backend
