@@ -61,7 +61,7 @@ pipeline{
                     withCredentials([file(credentialsId: 'vm_key', variable: 'my_key')]){
                     sh '''
 
-                    ssh -tt -o StrictHostKeyChecking=no -i $my_key ubuntu@ec2-18-133-196-194.eu-west-2.compute.amazonaws.com << EOF
+                    ssh -tt -o StrictHostKeyChecking=no -i $my_key ubuntu@ec2-35-176-172-62.eu-west-2.compute.amazonaws.com << EOF
                     sudo service nginx stop
 
                     rm -rf Final-Project
