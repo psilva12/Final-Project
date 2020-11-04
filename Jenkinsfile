@@ -2,7 +2,7 @@ pipeline{
         agent any
         environment {
             app_version = 'v1'
-            rollback = 'true'
+            rollback = 'false'
         }
         stages{
             stage('Build Images'){
@@ -10,8 +10,8 @@ pipeline{
                                 script{
                                     if (env.rollback == 'false'){
                                         // Check which dockerhub to use
-                                        imagef = docker.build("finalProject-frontend", "./frontend")
-                                        imageb = docker.build("finalProject-backend", "./backend")
+                                        image1 = docker.build("final_project_frontend", "./src/main/resources/final-project-frontend")
+                                        image2 = docker.build("final_project_backend", ".")
                                     }
                                 }
                             }
@@ -21,8 +21,8 @@ pipeline{
                                 script{
                                     if (env.rollback == 'false'){
                                         docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials'){
-                                            imagef.push("${env.app_version}")
-                                            imageb.push("${env.app_version}")
+                                            image1.push("${env.app_version}")
+                                            image2.push("${env.app_version}")
                                         }
                                     }
                                 }
@@ -56,31 +56,31 @@ pipeline{
 //                     }
 //                 }
 //             }
-            stage('Deploy') {
-                steps{
-                    withCredentials([file(credentialsId: 'vm_key', variable: 'my_key')]){
-                    sh '''
-
-                    ssh -tt -o StrictHostKeyChecking=no -i $my_key ubuntu@ec2-35-178-22-230.eu-west-2.compute.amazonaws.com << EOF
-                    sudo service nginx stop
-
-                    rm -rf Final-Project
-                    git clone https://github.com/psilva12/Final-Project
-                    cd Final-Project
-                    git checkout frontend-experimental
-                    sudo docker-compose up --build
-                    sudo docker-compose logs
-
-                    ls
-                    exit
-                    >> EOF
-                    '''
-
-
-                    }
-
-                }
-            }
+//             stage('Deploy') {
+//                 steps{
+//                     withCredentials([file(credentialsId: 'vm_key', variable: 'my_key')]){
+//                     sh '''
+//
+//                     ssh -tt -o StrictHostKeyChecking=no -i $my_key ubuntu@ec2-35-178-22-230.eu-west-2.compute.amazonaws.com << EOF
+//                     sudo service nginx stop
+//
+//                     rm -rf Final-Project
+//                     git clone https://github.com/psilva12/Final-Project
+//                     cd Final-Project
+//                     git checkout frontend-experimental
+//                     sudo docker-compose up
+//                     sudo docker-compose logs
+//
+//                     ls
+//                     exit
+//                     >> EOF
+//                     '''
+//
+//
+//                     }
+//
+//                 }
+//             }
 
         }
 //                     $loginGcloud
