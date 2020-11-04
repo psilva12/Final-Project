@@ -1,7 +1,7 @@
 pipeline{
         agent any
         environment {
-            app_version = 'v1.2'
+            app_version = 'v1.3'
             rollback = 'false'
         }
         stages{
