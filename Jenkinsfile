@@ -1,8 +1,8 @@
 pipeline{
         agent any
         environment {
-            app_version = 'v1.3'
-            rollback = 'true'
+            app_version = 'v1.4'
+            rollback = 'false'
         }
         stages{
             stage('Build Frontend Image'){
@@ -96,10 +96,10 @@ pipeline{
 //             }
              stage('Deploy') {
                  steps{
-                     withCredentials([file(credentialsId: 'vm_key', variable: 'my_key')]){
+                     withCredentials([file(credentialsId: 'vm_key', variable: 'my_key'), string(credentialsId: 'gcloudLogin', variable: 'loginGcloud')]){
                      sh '''
 
-                     ssh -tt -o StrictHostKeyChecking=no -i $my_key ubuntu@ec2-35-178-22-230.eu-west-2.compute.amazonaws.com << EOF
+                     ssh -tt -o StrictHostKeyChecking=no -i $my_key ubuntu@ec2-3-8-130-251.eu-west-2.compute.amazonaws.com << EOF
                      sudo service nginx stop
 
                      rm -rf Final-Project
@@ -112,6 +112,9 @@ pipeline{
 
                      sudo -E app_version=$app_version docker-compose up -d
                      sudo docker-compose logs
+
+                     $loginGcloud
+                     kubectl apply -f kubectl/
 
                      ls
                      exit
