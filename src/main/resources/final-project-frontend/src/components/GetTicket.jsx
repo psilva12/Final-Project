@@ -48,6 +48,7 @@ const GetTicket = () => {
                 {items.filter(ticket =>ticket.status === false).map( (hi) => (
                     <div>
                         <Card border="primary" style={{ width: '18rem' }}>
+                        <Card.Header>{hi.topic}</Card.Header>
                             <Card.Body>
                             <Card.Title>{hi.title}</Card.Title>
                             <Card.Subtitle className="mb-2 text-muted">{hi.author}</Card.Subtitle>
