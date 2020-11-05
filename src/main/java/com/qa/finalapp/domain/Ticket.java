@@ -35,10 +35,13 @@ public class Ticket {
     @Column
     private String topic;
 
+    @Column
+    private Integer urgency;
+
     public Ticket() {
     }
 
-    public Ticket(String title, List<Comment> comments, String description, String author, String time, Boolean status, String topic) {
+    public Ticket(String title, List<Comment> comments, String description, String author, String time, Boolean status, String topic, Integer urgency) {
         this.title = title;
         this.comments = comments;
         this.description = description;
@@ -46,6 +49,7 @@ public class Ticket {
         this.time = time;
         this.status = status;
         this.topic = topic;
+        this.urgency = urgency;
     }
 
     public Boolean getStatus() {
@@ -58,6 +62,14 @@ public class Ticket {
 
     public List<Comment> getComments() {
         return comments;
+    }
+
+    public Integer getUrgency() {
+        return urgency;
+    }
+
+    public void setUrgency(Integer urgency) {
+        this.urgency = urgency;
     }
 
     public void setComments(List<Comment> comments) {

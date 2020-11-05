@@ -14,18 +14,20 @@ public class TicketDTO {
     private String author;
     private Boolean status;
     private String topic;
+    private Integer urgency;
     private List<CommentDTO> comments = new ArrayList<>();
 
     public TicketDTO() {
     }
 
-    public TicketDTO(String title, String description, String time, String author, Boolean status, String topic) {
+    public TicketDTO(String title, String description, String time, String author, Boolean status, String topic, Integer urgency) {
         this.title = title;
         this.description = description;
         this.time = time;
         this.author = author;
         this.status = status;
         this.topic = topic;
+        this.urgency = urgency;
     }
 
     public List<CommentDTO> getComments() {
@@ -42,6 +44,14 @@ public class TicketDTO {
 
     public Boolean getStatus() {
         return status;
+    }
+
+    public Integer getUrgency() {
+        return urgency;
+    }
+
+    public void setUrgency(Integer urgency) {
+        this.urgency = urgency;
     }
 
     public void setStatus(Boolean status) {
