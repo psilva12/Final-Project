@@ -13,6 +13,7 @@ class PostTicket extends React.Component {
         description: '',
         author:'',
         time:'',
+        topic:'',
         status: 0
       }
 
@@ -25,6 +26,10 @@ class PostTicket extends React.Component {
       }
 
       handleAuthorChange = event => {
+        this.setState({author: event.target.value})
+      }
+
+      handleTopicChange = event => {
         this.setState({author: event.target.value})
       }
 
