@@ -12,6 +12,7 @@ let topic="empty";
 
 const GetTicket = () => {
     const [searchTerm, setSearchTerm] = React.useState("");
+    const [searchTerm2, setSearchTerm2] = React.useState("");
     const handleChange = event => {
         setSearchTerm("DevOps");
     };
@@ -23,6 +24,12 @@ const GetTicket = () => {
     };
     const handleChangeNone = event => {
         setSearchResults(items);
+    };
+    const handleChangeOther = event => {
+        setSearchTerm("O");
+    };
+    const handleChangeSearch = event => {
+        setSearchTerm2(event.target.value);
     };
     const [searchResults, setSearchResults] = React.useState([]);
     const [error, setError] = useState(null);
@@ -58,9 +65,13 @@ const GetTicket = () => {
                 const results = items.filter(ticket =>ticket.topic.includes(searchTerm)
                 );
                 setSearchResults(results);
+
+                const results2 = items.filter(ticket =>ticket.description.toLowerCase().includes(searchTerm2.toLowerCase())
+                );
+                setSearchResults(results2);
                 
             //   }, [searchTerm]);
-    },[searchTerm]);
+    },[searchTerm,searchTerm2]);
   
     if(error){
         return <div> Oops... something has happened... {error.message}</div>
@@ -84,14 +95,15 @@ const GetTicket = () => {
                 <Dropdown.Item  onClick={handleChange} >Dev-Ops</Dropdown.Item>
                 <Dropdown.Item onClick={handleChangeBack} >Back-End</Dropdown.Item>
                 <Dropdown.Item onClick={handleChangeFront} >Front-End</Dropdown.Item>
+                <Dropdown.Item onClick={handleChangeOther} >Other</Dropdown.Item>
                 
             </DropdownButton>
-            {/* <input
+            <input
         type="text"
         placeholder="Search"
-        value={searchTerm}
-        onChange={handleChange}
-      /> */}
+        value={searchTerm2}
+        onChange={handleChangeSearch}
+      />
                 <Table>
                 <td>
                 <h3> Queue </h3>
