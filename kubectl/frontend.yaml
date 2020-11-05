@@ -28,6 +28,6 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: judithed/final_project_frontend:${app_version}
+          image: judithed/final_project_frontend:app_version
           ports:
             - containerPort: 3000

@@ -28,6 +28,6 @@ spec:
     spec:
       containers:
         - name: backend
-          image: judithed/final_project_backend:${app_version}
+          image: judithed/final_project_backend:app_version
           ports:
             - containerPort: 9500

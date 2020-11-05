@@ -113,7 +113,7 @@ pipeline{
                      sudo -E app_version=$app_version docker-compose up -d
                      sudo docker-compose logs
 
-                     sed -i s+${app_version}+$app_version+g kubectl/backend.yaml kubectl/frontend.yaml
+                     sed -i s+app_version+$app_version+g kubectl/backend.yaml kubectl/frontend.yaml
 
                      $loginGcloud
                      kubectl apply -f kubectl/
