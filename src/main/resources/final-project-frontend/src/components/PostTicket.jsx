@@ -30,18 +30,20 @@ class PostTicket extends React.Component {
       }
 
       handleTopicChange = event => {
-        this.setState({author: event.target.value})
+        this.setState({topic: event.target.value})
       }
 
      
       handleSubmit = event => {
         event.preventDefault();
         axios.post(`http://localhost:9500/createTicket`,
-            {   title: this.state.title,
+            {   
+                title: this.state.title,
                 description: this.state.description,
                 author: this.state.author,
                 time: date.toUTCString(),
-                status: this.state.status
+                status: this.state.status,
+                topic: this.state.topic
             }            
         )
           .then(res => {
@@ -57,6 +59,21 @@ class PostTicket extends React.Component {
             </br>
             <div>
               <Form onSubmit={this.handleSubmit}>
+                  <Form.Group>
+                    <Form.Label>Topic</Form.Label>
+                  <Form.Control
+                    as="select"
+                    className="mr-sm-2"
+                    id="inlineFormCustomSelect"
+                    custom
+                    onChange={this.handleTopicChange}
+                  >
+                    <option value="0">Choose a Topic...</option>
+                    <option value="DevOps">DevOps</option>
+                    <option value="BackEnd">Back-End</option>   
+                    <option value="FrontEnd">Front-End</option>
+                  </Form.Control>
+                  </Form.Group>
                   <Form.Group controlId="formGridTitle">
                     <Form.Label>Title</Form.Label>
                     <Form.Control placeholder="Ticket Title" onChange={this.handleTitleChange}/>
