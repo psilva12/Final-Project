@@ -12,7 +12,7 @@ const ViewTicket = () => {
     const { id } = useParams();
 
     useEffect( () => {
-        axios.get(`http://35.197.221.127:9500/getTicketById/${id}` ,
+        axios.get(`http://final_project_backend:9500/getTicketById/${id}` ,
         {
             id: '',
             headers:{

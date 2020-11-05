@@ -6,7 +6,7 @@ const DeleteTicket = () => {
   const { id } = useParams();
 
   useEffect( () => {
-      axios.delete(`http://35.197.221.127:9500/deleteTicket/${id}` ,
+      axios.delete(`http://final_project_backend:9500/deleteTicket/${id}` ,
       {
           id: '',
           headers:{
