@@ -11,29 +11,16 @@ const ViewTicket = () => {
     const [isLoaded, setIsLoaded] = useState(false);
     const [items, setItems] = useState([]);
     const { id } = useParams();
-    
-    handleSubmit = event => {
-        event.preventDefault();
-        axios.post(`http://localhost:9500/createComment`,
-            {   
-                description: this.state.description,
-                author: this.state.author,
-                time: date.toUTCString(),
-                ticket: {
-                    id: {$id}
-                }
-            }            
-        )
-          .then(res => {
-            console.log(res);
-            console.log(res.data);
-          })
-      }
 
     useEffect( () => {
         axios.get(`http://localhost:9500/getTicketById/${id}` ,
         {
             id: '',
+            comments: {
+                author: '',
+                description: '',
+                time: '',
+            },
             headers:{
                 'Access-Control-Allow-Origin':'*'
             }
@@ -77,8 +64,8 @@ else if(!isLoaded){
                             Delete Ticket
                         </Button>
                         {' '}
-                        <Button variant="success" href={`/doneTicket/${items.id}/${items.title}/${items.description}`}>
-                            Done
+                        <Button variant="info" href={`/createSolution/${items.id}/${items.title}/${items.description}`}>
+                            Add Solution
                         </Button>
                         </Card.Body>
                         <Card.Footer>
@@ -86,22 +73,25 @@ else if(!isLoaded){
                         </Card.Footer> 
                     </Card>
                     <br></br>
-            
-                <Form onSubmit={this.handleSubmit}>
-                  <Form.Group controlId="formGridPassword">
-                    <Form.Label>Full Name</Form.Label>
-                    <Form.Control placeholder="Please enter your Full Name." onChange={this.handleAuthorChange}/>
-                  </Form.Group>
-                
-                  <Form.Group controlId="formGridAddress1">
-                    <Form.Label>Description of Solution</Form.Label>
-                    <Form.Control as="textarea" placeholder="Please describe your solution to the ticket." onChange={this.handleDescChange}/>
-                  </Form.Group>
-                  <Button variant="info" type="submit">
-                      Add Solution
-                  </Button>
-              </Form>
               </div>
+
+              {items.data.comments.map( (hi) => (  
+              <div>
+                    <Card border="primary" style={{ width: '60rem' }}>
+                        <Card.Body>
+                        <Card.Title>Solution</Card.Title>
+                        <Card.Subtitle className="mb-2 text-muted">{hi}</Card.Subtitle>
+                        <Card.Text>
+                            {hi}
+                        </Card.Text>
+                        </Card.Body>
+                        <Card.Footer>
+                            <small className="text-muted">{hi}</small>
+                        </Card.Footer> 
+                    </Card>
+                    <br></br>
+              </div>
+              ))}
             </Container>
         </div>
     )

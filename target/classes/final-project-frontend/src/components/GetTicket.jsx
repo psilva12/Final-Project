@@ -42,7 +42,6 @@ const GetTicket = () => {
         return(
             <Container>
             <div>
-                
                 <Table>
                 <td>
                 <h3> Queue </h3>
@@ -57,10 +56,6 @@ const GetTicket = () => {
                             </Card.Text>
                             <Button variant="info" href={`/viewTicket/${hi.id}`}>
                                 View Ticket
-                            </Button>
-                            {' '}
-                            <Button variant="success" href={`/doneTicket/${hi.id}/${hi.title}/${hi.description}`}>
-                                Done
                             </Button>
                             </Card.Body> 
                             <Card.Footer>

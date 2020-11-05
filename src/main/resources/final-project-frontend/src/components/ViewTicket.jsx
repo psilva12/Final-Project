@@ -11,16 +11,17 @@ const ViewTicket = () => {
     const [isLoaded, setIsLoaded] = useState(false);
     const [items, setItems] = useState([]);
     const { id } = useParams();
+    const [solutions, setSolutions] = useState([]);
 
     useEffect( () => {
         axios.get(`http://localhost:9500/getTicketById/${id}` ,
         {
             id: '',
-            comments: {
-                author: '',
-                description: '',
-                time: '',
-            },
+            // comments: {
+            //     author: '',
+            //     description: '',
+            //     time: '',
+            // },
             headers:{
                 'Access-Control-Allow-Origin':'*'
             }
@@ -32,6 +33,8 @@ const ViewTicket = () => {
                 setIsLoaded(true);
                 console.log(res.data);
                 setItems(res.data)
+                setSolutions(res.data.comments)
+                
             },
             (error) => {
                 setIsLoaded(true);
@@ -47,6 +50,7 @@ else if(!isLoaded){
 }else{
     return(
         <div>
+            {console.log(solutions)}
             <Container>
                 <div>
                     <Card border="primary" style={{ width: '60rem' }}>
@@ -74,19 +78,22 @@ else if(!isLoaded){
                     </Card>
                     <br></br>
               </div>
+              {/* {console.log(items.comments)} */}
 
-              {items.data.comments.map( (hi) => (  
+              
+                
+              {solutions.map( (hi) => (  
               <div>
                     <Card border="primary" style={{ width: '60rem' }}>
                         <Card.Body>
                         <Card.Title>Solution</Card.Title>
-                        <Card.Subtitle className="mb-2 text-muted">{hi}</Card.Subtitle>
+                        <Card.Subtitle className="mb-2 text-muted">{hi.author}</Card.Subtitle>
                         <Card.Text>
-                            {hi}
+                            {hi.description}
                         </Card.Text>
                         </Card.Body>
                         <Card.Footer>
-                            <small className="text-muted">{hi}</small>
+                            <small className="text-muted">{hi.time}</small>
                         </Card.Footer> 
                     </Card>
                     <br></br>
