@@ -32,16 +32,20 @@ public class Ticket {
     @Column
     private Boolean status;
 
+    @Column
+    private String topic;
+
     public Ticket() {
     }
 
-    public Ticket(String title, List<Comment> comments, String description, String author, String time, Boolean status) {
+    public Ticket(String title, List<Comment> comments, String description, String author, String time, Boolean status, String topic) {
         this.title = title;
         this.comments = comments;
         this.description = description;
         this.author = author;
         this.time = time;
         this.status = status;
+        this.topic = topic;
     }
 
     public Boolean getStatus() {
@@ -96,7 +100,15 @@ public class Ticket {
         return time;
     }
 
-public void setTime(String time) {
+    public String getTopic() {
+        return topic;
+    }
+
+    public void setTopic(String topic) {
+        this.topic = topic;
+    }
+
+    public void setTime(String time) {
         this.time = time;
     }
 }
