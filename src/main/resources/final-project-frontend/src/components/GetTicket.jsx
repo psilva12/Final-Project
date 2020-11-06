@@ -7,6 +7,8 @@ import Table from 'react-bootstrap/Table'
 import Container from 'react-bootstrap/Container'
 import DropdownButton from 'react-bootstrap/DropdownButton'
 import Dropdown from 'react-bootstrap/Dropdown'
+import Form from 'react-bootstrap/Form'
+import Col from 'react-bootstrap/Col'
 
 let topic="empty";
 
@@ -36,8 +38,6 @@ const GetTicket = () => {
     const [isLoaded, setIsLoaded] = useState(false);
     const [items, setItems] = useState([]);
 
-
-
     useEffect( () => {
         axios.get("http://localhost:9500/getTickets" ,
             {
@@ -60,8 +60,6 @@ const GetTicket = () => {
                     
                 }
             )
-            // setSearchResults(items)
-            // useEffect(() => {
                 const results = items.filter(ticket =>ticket.topic.includes(searchTerm)
                 );
                 setSearchResults(results);
@@ -69,8 +67,6 @@ const GetTicket = () => {
                 const results2 = items.filter(ticket =>ticket.description.toLowerCase().includes(searchTerm2.toLowerCase())
                 );
                 setSearchResults(results2);
-                
-            //   }, [searchTerm]);
     },[searchTerm,searchTerm2]);
   
     if(error){
@@ -79,31 +75,33 @@ const GetTicket = () => {
     else if(!isLoaded){
         return <div> Please wait... we are loading your information</div>
     }else{
-        
-        
-        
          return(
-
-            
             <Container>
             <div>
-            
-              
+            <Form>
+            <Form.Row>
+            <Col>
             <DropdownButton id="dropdown-basic-button" title="Filter By topic"  defaultValue="D"
-        onChange={handleChange}>
+            onChange={handleChange}>
                 <Dropdown.Item onClick={handleChangeNone} >None</Dropdown.Item>
                 <Dropdown.Item  onClick={handleChange} >Dev-Ops</Dropdown.Item>
                 <Dropdown.Item onClick={handleChangeBack} >Back-End</Dropdown.Item>
                 <Dropdown.Item onClick={handleChangeFront} >Front-End</Dropdown.Item>
                 <Dropdown.Item onClick={handleChangeOther} >Other</Dropdown.Item>
-                
             </DropdownButton>
+            <br></br>
+            </Col>
+            
+            <Col>
             <input
-        type="text"
-        placeholder="Search"
-        value={searchTerm2}
-        onChange={handleChangeSearch}
-      />
+                type="text"
+                placeholder="Search"
+                value={searchTerm2}
+                onChange={handleChangeSearch}
+            />
+            </Col>
+            </Form.Row>
+            </Form>
                 <Table>
                 <td>
                 <h3> Queue </h3>
