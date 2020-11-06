@@ -2,7 +2,7 @@ pipeline{
         agent any
         environment {
             app_version = 'v1.6'
-            rollback = 'false'
+            rollback = 'true'
         }
         stages{
             stage('Build Frontend Image'){
@@ -99,7 +99,7 @@ pipeline{
                      withCredentials([file(credentialsId: 'vm_key', variable: 'my_key'), string(credentialsId: 'gcloudLogin', variable: 'loginGcloud')]){
                      sh '''
 
-                     ssh -tt -o StrictHostKeyChecking=no -i $my_key ubuntu@ec2-3-8-130-251.eu-west-2.compute.amazonaws.com << EOF
+                     ssh -tt -o StrictHostKeyChecking=no -i $my_key ubuntu@ec2-3-10-59-215.eu-west-2.compute.amazonaws.com << EOF
                      sudo service nginx stop
 
                      rm -rf Final-Project
