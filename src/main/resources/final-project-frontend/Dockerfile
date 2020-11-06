@@ -18,7 +18,7 @@ RUN npm install
 COPY . .
 
 # start app
-CMD ["npm", "start"]  
+CMD ["node", "index.js"]
 #ENTRYPOINT ["/usr/bin/npm", "App.js"]
 # The Node version that we'll be running for our version of React.
 # You may have to search the Node directory for a version that fits
