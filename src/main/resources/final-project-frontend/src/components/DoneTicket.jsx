@@ -23,7 +23,7 @@ export default class DoneTicket extends React.Component {
 
         const { match: { params } } = this.props;
         
-        axios.put(`http://final_project_backend:9500/updateTicket/${params.id}`,
+        axios.put(`http://0.0.0.0:9500/updateTicket/${params.id}`,
             {  
               title: params.title,
               description: params.description,

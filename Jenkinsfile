@@ -1,8 +1,8 @@
 pipeline{
         agent any
         environment {
-            app_version = 'v1.5'
-            rollback = 'true'
+            app_version = 'v1.6'
+            rollback = 'false'
         }
         stages{
             stage('Build Frontend Image'){
@@ -110,8 +110,7 @@ pipeline{
                      docker pull judithed/final_project_backend:$app_version
                      docker pull judithed/final_project_frontend:$app_version
 
-                     sudo -E app_version=$app_version docker-compose up -d
-                     sudo docker-compose logs
+
 
                      sed -i s+app_version+$app_version+g kubectl/backend.yaml kubectl/frontend.yaml
 
@@ -122,7 +121,8 @@ pipeline{
                      exit
                      >> EOF
                      '''
-
+// sudo -E app_version=$app_version docker-compose up -d
+//                      sudo docker-compose logs
 
                      }
 

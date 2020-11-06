@@ -25,7 +25,7 @@ export default class UpdateTicket extends React.Component {
         
         const { match: { params } } = this.props;
         
-        axios.put(`http://final_project_backend:9500/updateTicket/${params.id}`,
+        axios.put(`http://0.0.0.0:9500/updateTicket/${params.id}`,
             {   title: this.state.title,
                 description: this.state.description,
                 status: 0
