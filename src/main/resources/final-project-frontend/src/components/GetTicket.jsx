@@ -15,28 +15,30 @@ let topic="empty";
 const GetTicket = () => {
     const [searchTerm, setSearchTerm] = React.useState("");
     const [searchTerm2, setSearchTerm2] = React.useState("");
-    const handleChange = event => {
-        setSearchTerm("DevOps");
-    };
-    const handleChangeBack = event => {
-        setSearchTerm("Back");
-    };
-    const handleChangeFront = event => {
-        setSearchTerm("Front");
-    };
-    const handleChangeNone = event => {
-        setSearchResults(items);
-    };
-    const handleChangeOther = event => {
-        setSearchTerm("O");
-    };
-    const handleChangeSearch = event => {
-        setSearchTerm2(event.target.value);
-    };
     const [searchResults, setSearchResults] = React.useState([]);
     const [error, setError] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
     const [items, setItems] = useState([]);
+
+    const handleChangeBack = event => {
+        setSearchResults(items.filter(ticket =>ticket.topic.includes("Back")));
+        };
+        const handleChangeDev = event => {
+        setSearchResults(items.filter(ticket =>ticket.topic.includes("Dev")));
+        };
+        const handleChangeFront = event => {
+        setSearchResults(items.filter(ticket =>ticket.topic.includes("Front")
+        ));
+        };
+        const handleChangeNone = event => {
+        setSearchResults(items);
+        };
+        const handleChangeOther = event => {
+        setSearchResults(items.filter(ticket =>ticket.topic.includes("Other")));
+        };
+        const handleChangeSearch = event => {
+        setSearchTerm2(event.target.value);
+        };
 
     useEffect( () => {
         axios.get("http://localhost:9500/getTickets" ,
@@ -81,24 +83,23 @@ const GetTicket = () => {
             <Form>
             <Form.Row>
             <Col>
-            <DropdownButton id="dropdown-basic-button" title="Filter By topic"  defaultValue="D"
-            onChange={handleChange}>
+                <DropdownButton id="dropdown-basic-button" title="Filter By topic"
+                value={searchTerm}>
                 <Dropdown.Item onClick={handleChangeNone} >None</Dropdown.Item>
-                <Dropdown.Item  onClick={handleChange} >Dev-Ops</Dropdown.Item>
+                <Dropdown.Item onClick={handleChangeDev} >Dev-Ops</Dropdown.Item>
                 <Dropdown.Item onClick={handleChangeBack} >Back-End</Dropdown.Item>
                 <Dropdown.Item onClick={handleChangeFront} >Front-End</Dropdown.Item>
                 <Dropdown.Item onClick={handleChangeOther} >Other</Dropdown.Item>
-            </DropdownButton>
+                </DropdownButton>
             <br></br>
             </Col>
-            
             <Col>
-            <input
-                type="text"
-                placeholder="Search"
-                value={searchTerm2}
-                onChange={handleChangeSearch}
-            />
+                <input
+                    type="text"
+                    placeholder="Search"
+                    value={searchTerm2}
+                    onChange={handleChangeSearch}
+                />
             </Col>
             </Form.Row>
             </Form>
