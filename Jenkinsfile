@@ -1,8 +1,8 @@
 pipeline{
         agent any
         environment {
-            app_version = 'v1.6'
-            rollback = 'true'
+            app_version = 'v1.7'
+            rollback = 'false'
         }
         stages{
             stage('Build Frontend Image'){
