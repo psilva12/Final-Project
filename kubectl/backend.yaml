@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: final_project_backend
+  name: backend
 spec:
   selector:
-    app: final_project_backend
+    app: backend
   ports:
     - protocol: TCP
       port: 9500
@@ -14,20 +14,20 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: final_project_backend
+  name: backend
   labels:
-    app: final_project_backend
+    app: backend
 spec:
   selector:
     matchLabels:
-      app: final_project_backend
+      app: backend
   template:
     metadata:
       labels:
-        app: final_project_backend
+        app: backend
     spec:
       containers:
-        - name: final_project_backend
+        - name: backend
           image: judithed/final_project_backend:app_version
           ports:
             - containerPort: 9500
