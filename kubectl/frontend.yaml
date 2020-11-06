@@ -31,3 +31,4 @@ spec:
           image: judithed/final_project_frontend:app_version
           ports:
             - containerPort: 3000
+        restartPolicy: OnFailure

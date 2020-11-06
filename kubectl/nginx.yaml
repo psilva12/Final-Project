@@ -38,6 +38,7 @@ spec:
           volumeMounts:
             - name: nginx-config
               mountPath: /etc/nginx/conf.d
+        restartPolicy: OnFailure
       volumes:
         - name: nginx-config
           configMap:
