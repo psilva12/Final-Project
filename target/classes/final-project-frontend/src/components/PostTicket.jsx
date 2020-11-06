@@ -72,6 +72,7 @@ class PostTicket extends React.Component {
                     <option value="DevOps">DevOps</option>
                     <option value="Back-End">Back-End</option>   
                     <option value="Front-End">Front-End</option>
+                    <option value="Other">Other</option>
                   </Form.Control>
                   </Form.Group>
                   <Form.Group controlId="formGridTitle">

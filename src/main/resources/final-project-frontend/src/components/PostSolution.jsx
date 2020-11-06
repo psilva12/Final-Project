@@ -64,6 +64,8 @@ export default class PostSolution extends React.Component {
             <br>
             </br>
             <div>
+            <h3>Add a Solution</h3>
+            <br></br>
                 <Form onSubmit={this.handleSubmit}>
                   <Form.Group controlId="formGridPassword">
                     <Form.Label>Full Name</Form.Label>
@@ -72,7 +74,7 @@ export default class PostSolution extends React.Component {
                 
                   <Form.Group controlId="formGridAddress1">
                     <Form.Label>Description of Solution</Form.Label>
-                    <Form.Control as="textarea" placeholder="Please describe your sol" onChange={this.handleDescChange}/>
+                    <Form.Control as="textarea" placeholder="Please describe your solution." onChange={this.handleDescChange}/>
                   </Form.Group>
                   <Button variant="info" type="submit">
                       Add Solution

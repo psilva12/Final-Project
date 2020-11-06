@@ -17,7 +17,7 @@ const DeleteTicket = () => {
     },[]);
 
     return (
-      <p>Deleted</p>
+      <p>The ticket has been deleted</p>
     )
   }
   

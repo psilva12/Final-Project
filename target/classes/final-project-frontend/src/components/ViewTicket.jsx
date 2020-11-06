@@ -4,7 +4,6 @@ import Card from 'react-bootstrap/Card'
 import { useParams } from 'react-router-dom';
 import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
-import Form from 'react-bootstrap/Form'
 
 const ViewTicket = () => {
     const [error, setError] = useState(null);
