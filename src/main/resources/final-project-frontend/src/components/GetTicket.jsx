@@ -12,7 +12,7 @@ const GetTicket = () => {
     const [items, setItems] = useState([]);
 
     useEffect( () => {
-        axios.get("http://0.0.0.0:9500/getTickets" ,
+        axios.get("backend/getTickets" ,
             {
                 id: '',
                 headers:{
