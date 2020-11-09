@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: judithed/frontend:v70
+          image: judithed/frontend:v75
           ports:
             - containerPort: 3000
           stdin: true
