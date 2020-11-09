@@ -41,7 +41,7 @@ const GetTicket = () => {
         };
 
     useEffect( () => {
-        axios.get("http://localhost:9500/getTickets" ,
+        axios.get("/backend/getTickets" ,
             {
                 id: '',
                 headers:{
