@@ -3,10 +3,14 @@ INSERT INTO `ticket`
 `description`,
 `time`,
 `author`,
-`status`)
+`status`,
+`topic`,
+`urgency`)
 VALUES
 ('a',
 'b',
 'c',
 'd',
-false);
+false,
+'e',
+1);

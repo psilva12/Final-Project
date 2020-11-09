@@ -42,8 +42,8 @@ public class TicketServiceUnitTest {
     void testCreate() {
         Long id = 1L;
         List<Comment> comments = new ArrayList<>();
-        Ticket newTicket = new Ticket("a", comments, "b", "c", "d", false);
-        Ticket savedTicket = new Ticket("a", comments, "b", "c", "d", false);
+        Ticket newTicket = new Ticket("a", comments, "b", "c", "d", false, "e",1);
+        Ticket savedTicket = new Ticket("a", comments, "b", "c", "d", false, "e",1);
 
         savedTicket.setId(id);
         Mockito.when(this.repo.save(newTicket)).thenReturn(savedTicket);
@@ -57,11 +57,11 @@ public class TicketServiceUnitTest {
     void testUpdate() {
         Long id = 1L;
         List<Comment> comments = new ArrayList<>();
-        Ticket newTicket = new Ticket("a", comments, "b", "c", "d", false);
-        Ticket oldTicket = new Ticket("a", comments, "b", "c", "d", false);
+        Ticket newTicket = new Ticket("a", comments, "b", "c", "d", false, "e",1);
+        Ticket oldTicket = new Ticket("a", comments, "b", "c", "d", false, "e",1);
         oldTicket.setId(id);
 
-        Ticket updatedTicket = new Ticket("a", comments, "b", "c", "d", false);
+        Ticket updatedTicket = new Ticket("a", comments, "b", "c", "d", false, "e",1);
         updatedTicket.setId(id);
         Mockito.when(this.repo.findById(id)).thenReturn(Optional.of(oldTicket));
 
@@ -78,7 +78,7 @@ public class TicketServiceUnitTest {
     void testGet() {
 
         List<Comment> comments = new ArrayList<>();
-        Ticket ticket = new Ticket("a", comments, "b", "c", "d", false);
+        Ticket ticket = new Ticket("a", comments, "b", "c", "d", false, "e",1);
         ticket.setId(1L); // badger object to match the one in badger-data.sql
         List<Ticket> tickets = new ArrayList<>();
         tickets.add(ticket);

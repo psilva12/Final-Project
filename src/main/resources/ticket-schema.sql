@@ -6,7 +6,9 @@ CREATE TABLE ticket (
     description VARCHAR(255),
     author VARCHAR(255),
     time VARCHAR(255),
-    status BIT(1)
+    status BIT(1),
+    topic VARCHAR(255),
+    urgency INTEGER
 );
 CREATE TABLE `comment` (
   `id` bigint NOT NULL AUTO_INCREMENT,
