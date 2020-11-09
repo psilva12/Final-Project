@@ -1,30 +1,65 @@
+#version: '3.7'
+#services:
+#  final_project_backend:
+#    image: judithed/final_project_backend:latest
+#    build: ./
+#    ports:
+#    - target: 9500
+#      published: 9500
+#  final_project_frontend:
+#    image: judithed/final_project_frontend:latest
+#    build: ./src/main/resources/final-project-frontend
+#    depends_on:
+#      - final_project_backend
+#    ports:
+#    - target: 3000
+#      published: 3000
+#    stdin_open: true
+#  nginx:
+#    image: nginx:latest
+#    ports:
+#    - target: 80
+#      published: 80
+#      protocol: tcp
+#    volumes:
+#    - type: bind
+#      source: ./nginx/nginx.conf
+#      target: /etc/nginx/nginx.conf
+#    depends_on:
+#      - final_project_frontend
+#
 version: '3.7'
 services:
-  final_project_backend:
-    image: judithed/final_project_backend:${app_version}
+  frontend:
+    image: judithed/frontend:v72
+    build: ./src/main/resources/final-project-frontend
+    ports:
+      - target: 3000
+        published: 3000
+        protocol: tcp
+    stdin_open: true
+    tty: true
+    depends_on:
+      - backend
+  backend:
+    image: judithed/backend:v72
     build: ./
     ports:
-    - target: 9500
-      published: 9500
-  final_project_frontend:
-    image: judithed/final_project_frontend:${app_version}
-    build: ./src/main/resources/final-project-frontend
-    depends_on:
-      - final_project_backend
-    ports:
-    - target: 3000
-      published: 3000
-    stdin_open: true
+      - target: 9500
+        published: 9500
+        protocol: tcp
   nginx:
     image: nginx:latest
     ports:
-    - target: 80
-      published: 80
-      protocol: tcp
+      - target: 80
+        published: 80
+        protocol: tcp
+    stdin_open: true
+    tty: true
     volumes:
-    - type: bind
-      source: ./nginx/nginx.conf
-      target: /etc/nginx/nginx.conf
+      - type: bind
+        source: ./nginx/nginx.conf
+        target: /etc/nginx/nginx.conf
     depends_on:
-      - final_project_frontend
-
+      - frontend
+      - backend
