@@ -13,7 +13,7 @@ const ViewTicket = () => {
     const [solutions, setSolutions] = useState([]);
 
     useEffect( () => {
-        axios.get(`http://localhost:9500/getTicketById/${id}` ,
+        axios.get(`/backend/getTicketById/${id}` ,
         {
             id: '',
             // comments: {
