@@ -31,7 +31,7 @@ export default class PostSolution extends React.Component {
         const { match: { params } } = this.props;
         
         event.preventDefault();
-        axios.post(`http://localhost:9500/createComment`,
+        axios.post(`/backend/createComment`,
             {   
                 description: this.state.description,
                 author: this.state.author,
