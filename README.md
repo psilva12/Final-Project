@@ -27,11 +27,12 @@ The application we are tasked to develop is a Spring Boot Help Queue application
 * CI server to handle the pipeline automation
 * Containerise the application services by creating images for each service
 * Kubernetes to deploy application using AWS EKS
-* Testing?
+* Testing
 
 ![mvp](https://gitlab.com/qacdevops/cne-final-project-specification/-/raw/master/images/cne-mvp.png)
 
 ## Project Outcome
+The application is a fully functional help ticketing system that allows users to post tickets regarding issues based on a specific topic e.g DevOps. Trainers and other students can post solutions to the tickets which then marks the ticket as completed. The tickets can be also updated if any spelling mistakes are made and can also be deleted entirely if no longer needed.
 
 ## Project Installation and Configuration
 
@@ -49,27 +50,40 @@ The application we are tasked to develop is a Spring Boot Help Queue application
 
 ## Software Development
 ### Java & Spring
+
 ### React & JavaScript
-### HTML/CSS
+
 
 ## Deployment
 ![deploy](https://user-content.gitlab-static.net/cc86f76dc227985a62c41eeaebd2016556062f92/68747470733a2f2f692e696d6775722e636f6d2f37757566396b652e706e67)
 
 ### AWS
+
 ### Terraform
+
 ### Ansible
+
 ### Jenkins
+
 ### Docker
+DockerHub was used as the artefact repository to store the application images built through docker. The built images were pushed to the repository so that they could be pulled later through the Jenkins pipeline. This allowed for the application to be containerized which means that all of the dependacies and relevant files for each section of the application e.g. front-end image contained react dependancies, were created as seperate images.
+
 ### Kubernetes (EKS)
 
-## Issues
 
 ## Future Improvements
+* Implement Login Functionality
+* Implement Front-end testing using Jest
+* Tickets can be sorted by urgency
+* Users can tag themselves on tickets to indicate they are having the same issue
+* Implement a help queue per cohort, such that trainees can navigate to their cohort to see the help queue specific to their class
+* Users can assign trainees and trainers to a help ticket. The trainers/trainees they can assign should be dependent on the current cohort
+* Users can update and delete solutions to tickets
 
 ## Conclusion
+
 
 ## Authors - Team 2
 * Jordan Hamilton
 * Judith Edhogbo
-* Jullfiqur Rahman
 * Paulo Silva
