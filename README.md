@@ -27,7 +27,7 @@ The application we are tasked to develop is a Spring Boot Help Queue application
 * CI server to handle the pipeline automation
 * Containerise the application services by creating images for each service
 * Kubernetes to deploy application using AWS EKS
-* Testing
+* Test the application before deployment
 
 ![mvp](https://gitlab.com/qacdevops/cne-final-project-specification/-/raw/master/images/cne-mvp.png)
 
@@ -36,8 +36,11 @@ The application is a fully functional help ticketing system that allows users to
 
 ## Project Installation and Configuration
 
+
+
 ## Project Management
 ### Jira
+(Screenshot here)
 
 ### Risk Assessment
 |                              Risk                             |                                                                                                              Analysis of Risk                                                                                                             | Probability | Severity |                                                                                                       Action                                                                                                       |
@@ -50,26 +53,31 @@ The application is a fully functional help ticketing system that allows users to
 
 ## Software Development
 ### Java & Spring
+Similarly to the first individual SFIA project, Java and Spring were used to develop and implement the back-end functionality of the application. Functions were created to handle HTTP requests from the front-end to get information as a JSON format from the RDS database instance using functions within the back-end. 
 
-### React & JavaScript
-
+### ReactJS
+To build the interactivity between the user and the backend
 
 ## Deployment
 ![deploy](https://user-content.gitlab-static.net/cc86f76dc227985a62c41eeaebd2016556062f92/68747470733a2f2f692e696d6775722e636f6d2f37757566396b652e706e67)
 
 ### AWS
+AWS was used as the main hosting provider for our EC2 and RDS instances. AWS offers an affordable but reliable solution to hosting both deployment and testing environments on the cloud. AWS was also used as the database server host to store our MySQL database and table.
 
 ### Terraform
+Although AWS includes its own GUI configuration interface when creating EC2 instances, it can sometimes become inconsitent over time and hard to maintain especially when you are using several different user groups and configuration settings for different instances. Terraform uses Infrastructure as Code which allows you to create individual, consistent configuration settings for each instance created in a time saving and efficient manner. This means that any instances can be created, managed and destroyed through the CLI using the configuration files created.
 
 ### Ansible
+Ansible is used for configuration and software deployment. It uses .yaml files to configure deployment settings and hosts. Ansible is a powerful piece of software that uses ssh access to connect to hosts and deploy configuration instructions. It uses an inventory file to store host addresses and variables to use when connecting via SSH to allow for successful authentication. For example, this project uses the playbook to ssh into the testing VM and install the docker and docker-compose dependancies and then shh into the Jenkins VM and configure the Jenkins user.
 
 ### Jenkins
+Jenkins is a CI server that offers a simple solution to automating continuous integration and delivery using source code. By creating a job and a Jenkinsfile we were able to implement stages of development that included testing and building the application to a testing environment. Jenkins also allowed for the use of secret variable and credential storage so we could pass in sensitive information through variables in the Jenkinsfile. Plugins could also be installed
 
 ### Docker
-DockerHub was used as the artefact repository to store the application images built through docker. The built images were pushed to the repository so that they could be pulled later through the Jenkins pipeline. This allowed for the application to be containerized which means that all of the dependacies and relevant files for each section of the application e.g. front-end image contained react dependancies, were created as seperate images.
+DockerHub was used as the artefact repository to store the application images built through docker. The built images were pushed to the repository so that they could be pulled later through the Jenkins pipeline. This allowed for the application to be containerized which means that all of the dependacies and relevant files for each section of the application e.g. front-end image contained react dependancies, were created as seperate images. This means the application can be deployed onto VMs and various other environments regardless of OS configuration.
 
 ### Kubernetes (EKS)
-
+Kubernetes is used to manage the containerized services for automation and deployment. As we are using docker containers for our project deployment solution, we are able to use Kubernetes to deploy these containers into a cluster. A cluster contains a group of hosts that are then stored in pods which store our docker containers and images. This cluster can then configure these different hosts to deploy to a single address to allow users to access the application.
 
 ## Future Improvements
 * Implement Login Functionality
@@ -84,6 +92,6 @@ DockerHub was used as the artefact repository to store the application images bu
 
 
 ## Authors - Team 2
-* Jordan Hamilton
-* Judith Edhogbo
-* Paulo Silva
+* Jordan Hamilton - JHamilton@QA.com
+* Judith Edhogbo - JEdhogbo@QA.com
+* Paulo Silva - PSilva@QA.com
