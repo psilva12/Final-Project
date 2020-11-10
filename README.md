@@ -2,7 +2,6 @@
 
 ### **_Resources_**
 * Jira - https://psos11.atlassian.net/secure/RapidBoard.jspa?projectKey=QFPS&rapidView=4
-* Presentation - 
 
 ## Contents
 * [Project Brief](#project-brief)
