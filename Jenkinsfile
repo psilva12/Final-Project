@@ -72,7 +72,7 @@ pipeline{
                     rm -rf Final-Project
                     git clone https://github.com/psilva12/Final-Project
                     cd Final-Project
-                    git checkout local
+                    git checkout development
 
 
                     mvn test
@@ -96,7 +96,7 @@ pipeline{
                      rm -rf Final-Project
                      git clone https://github.com/psilva12/Final-Project
                      cd Final-Project
-                     git checkout local
+                     git checkout development
 
                      sed -i s+app_version+$app_version+g kubectl/frontend.yaml
                      docker pull judithed/backend:v2.1
