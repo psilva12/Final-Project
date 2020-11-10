@@ -16,11 +16,6 @@ const ViewTicket = () => {
         axios.get(`/backend/getTicketById/${id}` ,
         {
             id: '',
-            // comments: {
-            //     author: '',
-            //     description: '',
-            //     time: '',
-            // },
             headers:{
                 'Access-Control-Allow-Origin':'*'
             }
@@ -77,7 +72,6 @@ else if(!isLoaded){
                     </Card>
                     <br></br>
               </div>
-              {/* {console.log(items.comments)} */}
 
               
                 
