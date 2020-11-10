@@ -132,7 +132,7 @@ const GetTicket = () => {
                 
                 
                 <td>
-                <h3> Done </h3>
+                <h3> Resolved </h3>
                 {searchResults.filter(ticket =>ticket.status === true).map( (hi) => (
                     <div>
                         <Card border="success" style={{ width: '18rem' }}>
