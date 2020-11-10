@@ -45,7 +45,7 @@ export default class PostSolution extends React.Component {
             console.log(res);
             console.log(res.data);
           })
-          axios.put(`http://localhost:9500/updateTicket/${params.id}`,
+          axios.put(`/backend/updateTicket/${params.id}`,
             {  
               title: params.title,
               description: params.description,
