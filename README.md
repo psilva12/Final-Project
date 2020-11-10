@@ -12,7 +12,6 @@
 * [Project Management](#project-management)
 * [Software Development](#software-development)
 * [Deployment](#deployment)
-* [Issues](#issues)
 * [Future Improvements](#future-improvements)
 * [Conclusion](#conclusion)
 
@@ -36,11 +35,29 @@ The application is a fully functional help ticketing system that allows users to
 
 ## Project Installation and Configuration
 
+### 1. Run Terraform & Ansible
+Before running the following commands, make sure to setup the VPC with relevant security groups & apply to terraform files.
+```
+$ terraform init
+$ terraform plan
+$ terraform apply
+```
 
+### 2. Configure Jenkins Pipeline
+Add required **credentials** and docker pipeline plugin during configuration. Use provided Jenkins file in repository to run pipeline job.
+- `vm_key`: .pem key to access testing vm
+- `gcloudLogin`: username and password used to access Google Cloud Kubernetes cluster
+- `databaseurl`: Database URI from AWS RDS instance e.g. (jdbc:mysql://(PUT DBURI HERE):3306/(databasename))
+- `databaseUsername`: RDS Database username
+- `databasePassword`: RDS Database password
+Change Public DNS addresses in Jenkinsfile to the VMs you created through Terraform.
+
+### 3. Configure Kubernetes Cluster
+Kubernetes Cluster needs to be created through GCloud CLI.
 
 ## Project Management
 ### Jira
-(Screenshot here)
+![jira](https://i.imgur.com/AwizcmL.jpg)
 
 ### Risk Assessment
 |                              Risk                             |                                                                                                              Analysis of Risk                                                                                                             | Probability | Severity |                                                                                                       Action                                                                                                       |
@@ -56,7 +73,10 @@ The application is a fully functional help ticketing system that allows users to
 Similarly to the first individual SFIA project, Java and Spring were used to develop and implement the back-end functionality of the application. Functions were created to handle HTTP requests from the front-end to get information as a JSON format from the RDS database instance using functions within the back-end. 
 
 ### ReactJS
-To build the interactivity between the user and the backend
+React is an open-source JavaScript library for building user interfaces or UI components. It was used to designthe frontend elemets of the application as well as implementing functionality between the front and back-end. The main purpose of React is to be fast, scalable, and simple which corresponds to the purporse of using cloud technologies.
+
+## Testing
+![testing](https://i.imgur.com/HCCCRbd.jpg)
 
 ## Deployment
 ![deploy](https://user-content.gitlab-static.net/cc86f76dc227985a62c41eeaebd2016556062f92/68747470733a2f2f692e696d6775722e636f6d2f37757566396b652e706e67)
@@ -89,7 +109,7 @@ Kubernetes is used to manage the containerized services for automation and deplo
 * Users can update and delete solutions to tickets
 
 ## Conclusion
-
+In conclusion, the project that has been developed meets the required MVP objectives and functionality along with several stretch goal features. The project efficiently handles user requests between the front end interactive elements and the back-end functions. A full CI/CD pipeline was integrated into the deployment of the application that includes both testing and the ability to perform a rolling update. Infrastructure management and configuration tools were applied to enable replicability and scalability.
 
 ## Authors - Team 2
 * Jordan Hamilton - JHamilton@QA.com
