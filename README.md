@@ -10,6 +10,7 @@
 * [Project Installation and Configuration](#project-installation-and-configuration)
 * [Project Management](#project-management)
 * [Software Development](#software-development)
+* [Testing](#testing)
 * [Deployment](#deployment)
 * [Future Improvements](#future-improvements)
 * [Conclusion](#conclusion)
