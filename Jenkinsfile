@@ -99,7 +99,7 @@ pipeline{
                      git checkout development
 
                      sed -i s+app_version+$app_version+g kubectl/frontend.yaml
-                     docker pull judithed/backend:v2.1
+                     docker pull judithed/backend:v2.2
                      docker pull judithed/frontend:$app_version
 
 
