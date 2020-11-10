@@ -1,0 +1,35 @@
+version: '3.7'
+services:
+  frontend:
+    image: judithed/frontend:$app_version
+    build: ./src/main/resources/final-project-frontend
+    ports:
+      - target: 3000
+        published: 3000
+        protocol: tcp
+    stdin_open: true
+    tty: true
+    depends_on:
+      - backend
+  backend:
+    image: judithed/backend:$app_version
+    build: ./
+    ports:
+      - target: 9500
+        published: 9500
+        protocol: tcp
+  nginx:
+    image: nginx:latest
+    ports:
+      - target: 80
+        published: 80
+        protocol: tcp
+    stdin_open: true
+    tty: true
+    volumes:
+      - type: bind
+        source: ./nginx/nginx.conf
+        target: /etc/nginx/nginx.conf
+    depends_on:
+      - frontend
+      - backend
