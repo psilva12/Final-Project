@@ -2,7 +2,7 @@ pipeline{
         agent any
         environment {
             app_version = 'v2.2'
-            rollback = 'false'
+            rollback = 'true'
         }
         stages{
             stage('Build Frontend Image'){
@@ -67,7 +67,7 @@ pipeline{
                     withCredentials([file(credentialsId: 'vm_key', variable: 'my_key')]){
                     sh '''
 
-                    ssh -tt -o StrictHostKeyChecking=no -i $my_key ubuntu@ec2-18-130-42-46.eu-west-2.compute.amazonaws.com << EOF
+                    ssh -tt -o StrictHostKeyChecking=no -i $my_key ubuntu@ec2-18-133-75-70.eu-west-2.compute.amazonaws.com << EOF
 
                     rm -rf Final-Project
                     git clone https://github.com/psilva12/Final-Project
@@ -90,7 +90,7 @@ pipeline{
                      withCredentials([file(credentialsId: 'vm_key', variable: 'my_key'), string(credentialsId: 'gcloudLogin', variable: 'loginGcloud')]){
                      sh '''
 
-                     ssh -tt -o StrictHostKeyChecking=no -i $my_key ubuntu@ec2-18-130-42-46.eu-west-2.compute.amazonaws.com << EOF
+                     ssh -tt -o StrictHostKeyChecking=no -i $my_key ubuntu@ec2-35-178-166-215.eu-west-2.compute.amazonaws.com << EOF
                      sudo service nginx stop
 
                      rm -rf Final-Project

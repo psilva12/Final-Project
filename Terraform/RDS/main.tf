@@ -1,5 +1,5 @@
 resource "aws_db_subnet_group" "db-subnet" {
-  name       = "sfia2"
+  name       = "finalproject"
   subnet_ids = var.subnet_ids
 }
 
@@ -16,6 +16,7 @@ resource "aws_db_instance" "database-1" {
   password                = var.password
   port                    = var.port
   storage_type            = var.storage_type
+   publicly_accessible    = true
 
   vpc_security_group_ids = var.vpc_security_group_ids
 

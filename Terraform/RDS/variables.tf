@@ -1,9 +1,9 @@
 variable "identifier"{
-  default = "sfia2"
+  default = "finalproject"
 }
 
 variable "name_prefix"{
-  default = "sfia2"
+  default = "fp"
 }
 
 variable "rds_identifier"{
@@ -35,7 +35,7 @@ variable "rds_storage_encrypted"{
 }
 
 variable "name"{
-  default = "sfia2"
+  default = "finalproject"
 }
 
 variable "username"{
@@ -53,13 +53,13 @@ variable "performance_insights_enabled"{
 }
 
 variable "subnet_ids"{
-  default = ["subnet-0d7b583cd1364005a","subnet-082247d98286bea47", "subnet-0479408c3118cf863"]
+  default = ["subnet-0adfe0c49dfad23f7", "subnet-0f7c54ab57732a7cc",]
 }
 
 variable "final_snapshot_identifier"{
-  default = "sfia2-snapshot"
+  default = "final-project-snapshot"
 }
 
 variable "vpc_security_group_ids"{
-  default = ["sg-0ca594e07c4bc543e",]
+  default = ["sg-0cc525f065ed681cb",]
 }

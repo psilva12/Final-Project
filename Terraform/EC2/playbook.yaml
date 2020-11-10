@@ -49,7 +49,7 @@
 #command: sudo apt update
     #command: sudo apt install openjdk-8-jdk -y
     #command: sudo useradd -m -s /bin/bash jenkins
-- hosts: testVM
+- hosts: deploy
   become: true
   vars:
   - install_directory: /opt/docker
@@ -64,3 +64,13 @@
     command: sudo snap install google-cloud-sdk --classic
   - name: 'install kubectl'
     command: sudo snap install kubectl --classic
+
+- hosts: testing
+  become: true
+  vars:
+  - install_directory: /opt/docker
+  tasks:
+  - name: 'ensure everything is update'
+    command: sudo apt update
+  - name: 'Install maven'
+    command: sudo apt install maven -y

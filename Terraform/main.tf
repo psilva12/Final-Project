@@ -8,6 +8,10 @@ module "aws_ec2" {
   source = "./EC2"
  }
 
+module "aws_rds" {
+  source = "./RDS"
+ }
+
 
 
 

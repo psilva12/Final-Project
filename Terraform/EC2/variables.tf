@@ -30,7 +30,7 @@ variable "pem-key" {
 variable "subnet_id" {
   description = "The ID of the subnet which I will deploy EC2 in to"
   // First subnet is private -> Jenkins     Second is public -> Kubernetes
-  default     = ["subnet-0edd07884eb30e179", "subnet-0adfe0c49dfad23f7"]
+  default     = ["subnet-0edd07884eb30e179", "subnet-0adfe0c49dfad23f7",]
 }
 
 variable "vpc_security_group_ids" {
@@ -40,7 +40,7 @@ variable "vpc_security_group_ids" {
 
 variable "tags" {
   description = "Map of tags"
-  default     = ["Jenkins","Deployment", "Testing", ]
+  default     = ["Jenkins2","Deployment2", "Testing2", ]
 }
 
 variable "associate_public_ip_address" {

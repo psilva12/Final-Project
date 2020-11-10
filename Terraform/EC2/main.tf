@@ -35,8 +35,11 @@ resource "local_file" "ansible_inventory" {
 [jenkins]
 ubuntu@${aws_instance.Instances[0].public_dns}
 
-[testVM]
+[deploy]
 ubuntu@${aws_instance.Instances[1].public_dns}
+
+[testing]
+ubuntu@${aws_instance.Instances[2].public_dns}
 
 [all:vars]
 ansible_ssh_private_key_file="./ansible-jenkins.pem"
