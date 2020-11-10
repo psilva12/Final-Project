@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   frontend:
-    image: judithed/frontend:v73
+    image: judithed/frontend:$app_version
     build: ./src/main/resources/final-project-frontend
     ports:
       - target: 3000
@@ -12,7 +12,7 @@ services:
     depends_on:
       - backend
   backend:
-    image: judithed/backend:v73
+    image: judithed/backend:$app_version
     build: ./
     ports:
       - target: 9500

@@ -66,63 +66,55 @@ pipeline{
                             }
                         }  
        
-//             stage('Testing'){
-//                 steps{
-//                     withCredentials([file(credentialsId: 'vm_key', variable: 'my_key'),string(credentialsId: 'TESTDB_CONNECT', variable: 'connectTest'),string(credentialsId: 'TESTDB_URI', variable: 'testUri'), string(credentialsId: 'DB_PASSWORD', variable: 'pw'), string(credentialsId: 'SECRET_KEY', variable: 'key')]){
-//                     sh '''
+            stage('Testing'){
+                steps{
+                    withCredentials([file(credentialsId: 'vm_key', variable: 'my_key'),string(credentialsId: 'TESTDB_CONNECT', variable: 'connectTest'),string(credentialsId: 'TESTDB_URI', variable: 'testUri'), string(credentialsId: 'DB_PASSWORD', variable: 'pw'), string(credentialsId: 'SECRET_KEY', variable: 'key')]){
+                    sh '''
+
+                    ssh -tt -o StrictHostKeyChecking=no -i $my_key ubuntu@ec2-35-176-194-80.eu-west-2.compute.amazonaws.com << EOF
+
+                    rm -rf sfiaTest
+                    cd sfia2
+
+                    mvn test
+
+                    exit
+                    >> EOF
+
+                    '''
+                    // --cov-report term --cov=sfia2 tests/
+                    }
+                }
+            }
+//              stage('Deploy') {
+//                  steps{
+//                      withCredentials([file(credentialsId: 'vm_key', variable: 'my_key')]){
+//                      sh '''
 //
-//                     ssh -tt -o StrictHostKeyChecking=no -i $my_key ubuntu@ec2-35-176-194-80.eu-west-2.compute.amazonaws.com << EOF
+//                      ssh -tt -o StrictHostKeyChecking=no -i $my_key ubuntu@ec2-35-178-22-230.eu-west-2.compute.amazonaws.com << EOF
+//                      sudo service nginx stop
 //
-//                     rm -rf sfiaTest
-//                     cd sfia2
-//                     $connectTest
-//                     source database/Create.sql;
-//                     exit
-//                     sudo docker exec sfia2_frontend_1 pytest --cov application
-//                     sudo docker exec sfia2_backend_1 pytest --cov application
-//                     rm -rf Tests
-//                     mkdir ~/Tests
+//                      rm -rf Final-Project
+//                      git clone https://github.com/psilva12/Final-Project
+//                      cd Final-Project
+//                      git checkout frontend-experimental
 //
-//                     sudo docker exec sfia2_frontend_1 pytest --cov application > ~/Tests/frontendTest.txt
-//                     sudo docker exec sfia2_backend_1 pytest --cov application > ~/Tests/backendTest.txt
+//                      docker pull judithed/backend:$app_version
+//                      docker pull judithed/frontend:$app_version
 //
-//                     exit
-//                     >> EOF
+//                      sudo -E app_version=$app_version docker-compose up -d
+//                      sudo docker-compose logs
 //
-//                     '''
-//                     // --cov-report term --cov=sfia2 tests/
-//                     }
-//                 }
-//             }
-             stage('Deploy') {
-                 steps{
-                     withCredentials([file(credentialsId: 'vm_key', variable: 'my_key')]){
-                     sh '''
-
-                     ssh -tt -o StrictHostKeyChecking=no -i $my_key ubuntu@ec2-35-178-22-230.eu-west-2.compute.amazonaws.com << EOF
-                     sudo service nginx stop
-
-                     rm -rf Final-Project
-                     git clone https://github.com/psilva12/Final-Project
-                     cd Final-Project
-                     git checkout frontend-experimental
-
-                     docker pull judithed/final_project_backend:$app_version
-                     docker pull judithed/final_project_frontend:$app_version
-
-                     sudo -E app_version=$app_version docker-compose up -d
-                     sudo docker-compose logs
-
-                     ls
-                     exit
-                     >> EOF
-                     '''
-
-
-                     }
-
-                 }
-             }
+//                      ls
+//                      exit
+//                      >> EOF
+//                      '''
+//
+//
+//                      }
+//
+//                  }
+//              }
 
         }
 //                     $loginGcloud
