@@ -47,7 +47,7 @@ $ terraform apply
 Add required **credentials** and docker pipeline plugin during configuration. Use provided Jenkins file in repository to run pipeline job.
 - `vm_key`: .pem key to access testing vm
 - `gcloudLogin`: username and password used to access Google Cloud Kubernetes cluster
-- `databaseurl`: Database URI from AWS RDS instance e.g. (jdbc:mysql://(PUT DBURI HERE):3306/(databasename))
+- `databaseurl`: Database URI from AWS RDS instance e.g. jdbc:mysql://(PUT DBURI HERE):3306/(DATABASE NAME)
 - `databaseUsername`: RDS Database username
 - `databasePassword`: RDS Database password
 Change Public DNS addresses in Jenkinsfile to the VMs you created through Terraform.
