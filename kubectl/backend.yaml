@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: backend
-          image: judithed/backend:v74
+          image: judithed/backend:app_version
           ports:
             - containerPort: 9500
 ---
