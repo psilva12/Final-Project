@@ -31,7 +31,7 @@ pipeline{
                         }
 //             stage('Build Backend Image'){
 //                             steps{
-//                                 withCredentials([string(credentialsId: 'databaseurl', variable: 'my_url'),string(credentialsId: 'databaseUsername', variable: 'my_user'), string(credentialsId: 'databasePassword', variable: 'my_pw'),]){
+//                                 withCredentials([string(credentialsId: 'databaseurl', variable: 'my_url'),string(credentialsId: 'databaseUsername', variable: 'my_user'), string(credentialsId: 'databasePassword', variable: 'my_pw')]){
 //                                  sh '''
 //                                  sed -i s+databasepassword+$my_pw+g src/main/resources/application-dev.properties
 //                                  sed -i s+databaseurl+$my_url+g src/main/resources/application-dev.properties
@@ -64,7 +64,7 @@ pipeline{
        
             stage('Testing'){
                 steps{
-                    withCredentials([file(credentialsId: 'vm_key', variable: 'my_key')]){
+                    withCredentials([file(credentialsId: 'vm_key', variable: 'my_key'), string(credentialsId: 'databaseurl', variable: 'my_url'),string(credentialsId: 'databaseUsername', variable: 'my_user'), string(credentialsId: 'databasePassword', variable: 'my_pw')]){
                     sh '''
 
                     ssh -tt -o StrictHostKeyChecking=no -i $my_key ubuntu@ec2-18-133-75-70.eu-west-2.compute.amazonaws.com << EOF
@@ -74,6 +74,9 @@ pipeline{
                     cd Final-Project
                     git checkout development
 
+                    sed -i s+databasepassword+$my_pw+g src/main/resources/application-dev.properties
+                    sed -i s+databaseurl+$my_url+g src/main/resources/application-dev.properties
+                    sed -i s+databaseusername+$my_user+g src/main/resources/application-dev.properties
 
                     mvn test
 
