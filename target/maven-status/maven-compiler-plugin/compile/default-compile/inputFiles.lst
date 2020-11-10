@@ -1,0 +1,14 @@
+/home/qa/Documents/Final-Project/src/main/java/com/qa/finalapp/repo/TicketRepository.java
+/home/qa/Documents/Final-Project/src/main/java/com/qa/finalapp/exceptions/CommentNotFoundException.java
+/home/qa/Documents/Final-Project/src/main/java/com/qa/finalapp/service/CommentService.java
+/home/qa/Documents/Final-Project/src/main/java/com/qa/finalapp/repo/CommentRepository.java
+/home/qa/Documents/Final-Project/src/main/java/com/qa/finalapp/configuration/AppConfiguration.java
+/home/qa/Documents/Final-Project/src/main/java/com/qa/finalapp/domain/Comment.java
+/home/qa/Documents/Final-Project/src/main/java/com/qa/finalapp/service/TicketService.java
+/home/qa/Documents/Final-Project/src/main/java/com/qa/finalapp/rest/CommentController.java
+/home/qa/Documents/Final-Project/src/main/java/com/qa/finalapp/exceptions/TicketNotFoundException.java
+/home/qa/Documents/Final-Project/src/main/java/com/qa/finalapp/dto/TicketDTO.java
+/home/qa/Documents/Final-Project/src/main/java/com/qa/finalapp/FinalappApplication.java
+/home/qa/Documents/Final-Project/src/main/java/com/qa/finalapp/dto/CommentDTO.java
+/home/qa/Documents/Final-Project/src/main/java/com/qa/finalapp/rest/TicketController.java
+/home/qa/Documents/Final-Project/src/main/java/com/qa/finalapp/domain/Ticket.java

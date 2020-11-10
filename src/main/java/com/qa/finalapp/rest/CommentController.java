@@ -22,16 +22,19 @@ public class CommentController {
         this.commentService = commentService;
     }
 
+    @CrossOrigin
     @GetMapping("/getComments")
     public ResponseEntity<List<CommentDTO>> getAllComments(){
         return ResponseEntity.ok(this.commentService.readAllComments());
     }
 
+    @CrossOrigin
     @PostMapping("/createComment")
     public ResponseEntity<CommentDTO> createComment(@RequestBody Comment comment){
         return new ResponseEntity<CommentDTO>(this.commentService.createComment(comment), HttpStatus.CREATED);
     }
 
+    @CrossOrigin
     @DeleteMapping("/deleteComment/{id}")
     public ResponseEntity<?> deleteComment(@PathVariable Long id){
         return this.commentService.deleteComment(id)
@@ -39,17 +42,20 @@ public class CommentController {
                 : ResponseEntity.noContent().build();
     }
 
+    @CrossOrigin
     @GetMapping("/getCommentById/{id}")
     public ResponseEntity<CommentDTO> getCommentById(@PathVariable Long id){
         return ResponseEntity.ok(this.commentService.findCommentById(id));
 
     }
 
+    @CrossOrigin
     @PutMapping("/updateComment/{id}")
     public ResponseEntity<CommentDTO> updateComment(@PathVariable Long id, @RequestBody Comment comment){
         return ResponseEntity.ok(this.commentService.updateComment(id, comment));
     }
 
+    @CrossOrigin
     @PutMapping("/updateCommentWithPathParam")
     public ResponseEntity<CommentDTO> updateCommentWithPathParam(@PathParam("id") Long id, @RequestBody Comment comment){
         // localhost:8080/updateNoteWithPathParam?id=1

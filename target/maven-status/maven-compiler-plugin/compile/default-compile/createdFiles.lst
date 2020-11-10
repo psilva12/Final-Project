@@ -1,0 +1,14 @@
+com/qa/finalapp/repo/CommentRepository.class
+com/qa/finalapp/service/CommentService.class
+com/qa/finalapp/domain/Ticket.class
+com/qa/finalapp/dto/CommentDTO.class
+com/qa/finalapp/service/TicketService.class
+com/qa/finalapp/domain/Comment.class
+com/qa/finalapp/rest/TicketController.class
+com/qa/finalapp/configuration/AppConfiguration.class
+com/qa/finalapp/exceptions/CommentNotFoundException.class
+com/qa/finalapp/exceptions/TicketNotFoundException.class
+com/qa/finalapp/rest/CommentController.class
+com/qa/finalapp/FinalappApplication.class
+com/qa/finalapp/repo/TicketRepository.class
+com/qa/finalapp/dto/TicketDTO.class

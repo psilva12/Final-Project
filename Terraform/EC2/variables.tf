@@ -5,7 +5,7 @@ variable "ami" {
 
 variable "instance-count" {
   description = "Number of instance that will need to be spin up"
-  default     = "2"
+  default     = "3"
 }
 
 variable "instance-type" {
@@ -40,7 +40,7 @@ variable "vpc_security_group_ids" {
 
 variable "tags" {
   description = "Map of tags"
-  default     = ["Jenkins","Deployment", ]
+  default     = ["Jenkins","Deployment", "Testing", ]
 }
 
 variable "associate_public_ip_address" {

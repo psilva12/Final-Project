@@ -22,16 +22,19 @@ public class TicketController {
         this.ticketService = ticketService;
     }
 
+    @CrossOrigin
     @GetMapping("/getTickets")
     public ResponseEntity<List<TicketDTO>> getAllTickets(){
         return ResponseEntity.ok(this.ticketService.readAllTickets());
     }
 
+    @CrossOrigin
     @PostMapping("/createTicket")
     public ResponseEntity<TicketDTO> createTicket(@RequestBody Ticket ticket){
         return new ResponseEntity<TicketDTO>(this.ticketService.createTicket(ticket), HttpStatus.CREATED);
     }
 
+    @CrossOrigin
     @DeleteMapping("/deleteTicket/{id}")
     public ResponseEntity<?> deleteTicket(@PathVariable Long id){
         return this.ticketService.deleteTicket(id)
@@ -39,17 +42,20 @@ public class TicketController {
                 : ResponseEntity.noContent().build();
     }
 
+    @CrossOrigin
     @GetMapping("/getTicketById/{id}")
     public ResponseEntity<TicketDTO> getTicketById(@PathVariable Long id){
         return ResponseEntity.ok(this.ticketService.findTicketById(id));
 
     }
 
+    @CrossOrigin
     @PutMapping("/updateTicket/{id}")
     public ResponseEntity<TicketDTO> updateTicket(@PathVariable Long id, @RequestBody Ticket ticket){
         return ResponseEntity.ok(this.ticketService.updateTicket(id, ticket));
     }
 
+    @CrossOrigin
     @PutMapping("/updateTicketWithPathParam")
     public ResponseEntity<TicketDTO> updateGameWithPathParam(@PathParam("id") Long id, @RequestBody Ticket ticket){
         // localhost:8080/updateNoteWithPathParam?id=1

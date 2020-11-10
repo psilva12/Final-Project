@@ -29,18 +29,47 @@ public class Ticket {
     @Column
     private String time;
 
+    @Column
+    private Boolean status;
+
+    @Column
+    private String topic;
+
+    @Column
+    private Integer urgency;
+
     public Ticket() {
     }
 
-    public Ticket(String title, String description, String author, String time) {
+    public Ticket(String title, List<Comment> comments, String description, String author, String time, Boolean status, String topic, Integer urgency) {
         this.title = title;
+        this.comments = comments;
         this.description = description;
         this.author = author;
         this.time = time;
+        this.status = status;
+        this.topic = topic;
+        this.urgency = urgency;
+    }
+
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
     }
 
     public List<Comment> getComments() {
         return comments;
+    }
+
+    public Integer getUrgency() {
+        return urgency;
+    }
+
+    public void setUrgency(Integer urgency) {
+        this.urgency = urgency;
     }
 
     public void setComments(List<Comment> comments) {
@@ -83,7 +112,15 @@ public class Ticket {
         return time;
     }
 
-public void setTime(String time) {
+    public String getTopic() {
+        return topic;
+    }
+
+    public void setTopic(String topic) {
+        this.topic = topic;
+    }
+
+    public void setTime(String time) {
         this.time = time;
     }
 }

@@ -47,6 +47,7 @@ public class TicketService {
         Ticket update = this.ticketRepository.findById(id).orElseThrow(TicketNotFoundException::new);
         update.setTitle(ticket.getTitle());
         update.setDescription(ticket.getDescription());
+        update.setStatus(ticket.getStatus());
 
         return this.mapToDTO(this.ticketRepository.save(update));
     }
@@ -59,33 +60,5 @@ public class TicketService {
         return this.ticketRepository.existsById(id);
     }
 
-    // Before DTO
-//    public List<Game> readAllGames(){
-//        return this.gameRepository.findAll();
-//    }
-//
-//    public Game createGame (Game game){
-//        return this.gameRepository.save(game);
-//    }
-//
-//    public Game findGameById(Long id){
-//        return this.gameRepository.findById(id).orElseThrow(GameNotFoundException::new);
-//    }
-//
-//    public Game updateGame(Long id, Game game){
-//        Game update = findGameById(id);
-//        update.setName(game.getName());
-//        update.setGenre(game.getGenre());
-//        return this.gameRepository.save(update);
-//
-//    }
-//
-//    public boolean deleteGame(Long id){
-//        if(!this.gameRepository.existsById(id)){
-//            throw new GameNotFoundException();
-//        }
-//        this.gameRepository.deleteById(id);
-//        return !this.gameRepository.existsById(id);
-//    }
 
 }
